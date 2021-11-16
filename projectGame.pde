@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+//trying out pull request
+//yep
+//yep
+//yep
+>>>>>>> bca04f69510e290acfc46b814919b620669241e9
 //declaring screens
 Screen[] screens;
 Screen startScreen;
@@ -10,6 +17,10 @@ Screen thirdScreen;
 //Screen secondScreen;
 //Screen thirdScreen;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bca04f69510e290acfc46b814919b620669241e9
 //keep track of current screen
 int currentScreen;
 
