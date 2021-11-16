@@ -3,6 +3,8 @@
 //yep
 //yep1
 //hey there
+//yep
+
 //declaring screens
 Screen[] screens;
 Screen startScreen;
@@ -14,7 +16,6 @@ Screen thirdScreen;
 //Screen startScreen;
 //Screen secondScreen;
 //Screen thirdScreen;
-
 
 //keep track of current screen
 int currentScreen;
