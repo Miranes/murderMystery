@@ -1,11 +1,4 @@
-/*asdas
-asdasd
-as
-dasdasd
-asdasd
-asdasd
-asdasd
-asdas*/
+//sadjhsjaghHHHHH
 //declaring screens
 Screen[] screens;
 Screen startScreen;
