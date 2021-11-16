@@ -15,6 +15,6 @@ class Item
   
   boolean hover()
   {
-    
+    return false;
   }
 }
