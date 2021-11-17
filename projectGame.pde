@@ -19,17 +19,16 @@ void setup() {
   size(1000, 600);
   
   currentScreen = 2;
-<<<<<<< HEAD
   player1 = new Player();
   startScreen = new Screen(color(255,0,0),"Start Screen",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
   explanationScreen = new Screen(color(0,255,0),"Explanation",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
   creditScreen = new Screen(color(0,0,255),"Credits",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
-=======
+
   mainChar = new Player();
   startScreen = new Screen(color(255,0,0),"something",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
   secondScreen = new Screen(color(0,255,0),"else",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
   thirdScreen = new Screen(color(0,0,255),"bro",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
->>>>>>> c7be0f34b371853a69b4a157842086301a4ad576
+
 
   
   screens = new Screen[]{startScreen, explanationScreen, creditScreen};
