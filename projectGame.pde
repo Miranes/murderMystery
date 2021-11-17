@@ -11,6 +11,8 @@ Screen basementScreen;
 Screen masterBedScreen;
 Screen atticHallScreen;
 Screen atticScreen;
+Screen hallScreen;
+Screen livingRoomScreen;
 
 //declaring items 
 Item[] items;
@@ -59,19 +61,28 @@ void setup() {
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   
   //initializing all 11 screens
-  startScreen = new Screen(color(255,0,0),"Start Screen");
-  creditScreen = new Screen(color(0,0,255),"Credits");
-  explanationScreen = new Screen(color(0,255,0),"Explanation",new Arrow[]{new Arrow(width - 50,height/2,radians(0.0),3)},new Item[]{items[0],items[1]});
-  respawnScreen = new Screen(color(255,0,0),"Respawn",new Arrow[]{new Arrow(width - 50,height/2,radians(0.0),4)}, new Item[]{items[2],items[3],items[4]});
-  entranceScreen = new Screen(color(0,255,0),"Entrance",new Arrow[]{new Arrow(width/2,height-100,radians(90.0),5), new Arrow(width/2,50,radians(-90.0),6)});
-  upstairHallScreen = new Screen(color(0,0,255),"Upstairs Hall",new Arrow[]{new Arrow(width/2,height-100,radians(90.0),0), new Arrow(width/2,50,radians(-90.0),0)});
-  kitchenScreen = new Screen(color(255,0,0),"Kitchen",new Arrow[]{new Arrow(width/2,height-100,radians(90.0),2), new Arrow(width/2,50,radians(-90.0),2)});
-  basementScreen = new Screen(color(0,255,0),"Basement",new Arrow[]{new Arrow(width/2,height-100,radians(90.0),1), new Arrow(width/2,50,radians(-90.0),1)});
-  masterBedScreen = new Screen(color(0,0,255),"Master Bedroom",new Arrow[]{new Arrow(width/2,height-100,radians(90.0),0), new Arrow(width/2,50,radians(-90.0),0)});
-  atticHallScreen = new Screen(color(255,0,0),"Attic Hall",new Arrow[]{new Arrow(width/2,height-100,radians(90.0),2), new Arrow(width/2,50,radians(-90.0),2)});
-  atticScreen = new Screen(color(0,255,0),"Attic",new Arrow[]{new Arrow(width/2,height-100,radians(90.0),1), new Arrow(width/2,50,radians(-90.0),1)});
+  int spawnHeight = height-200;
+  int spawnLeft = 100;
+  int spawnRight = width-100;
   
-  screens = new Screen[]{startScreen, creditScreen, explanationScreen, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen};
+  currentScreen = 4;
+  mainCharacter = new Player();
+  //initializing all 11 screens
+  startScreen = new Screen(loadImage("startScreen.png"), "Start Screen");
+  explanationScreen = new Screen(loadImage("explanationScreen.png"), "Explanation");
+  creditScreen = new Screen(loadImage("creditScreen.png"), "Credits");
+  respawnScreen = new Screen(loadImage("respawnScreen.png"), "Respawn");
+  entranceScreen = new Screen(loadImage("entranceScreen.png"), "Entrance", new Arrow[]{new Arrow(width-100, height-100, radians(0), 6, spawnLeft, spawnHeight), new Arrow(width/2, 250, radians(-90.0), 5, width/2, spawnHeight)});
+  upstairHallScreen = new Screen(loadImage("upstairHallScreen.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-10, radians(90.0), 4, width/2, height/2), new Arrow(width-50, height-150, radians(0), 9, spawnLeft, spawnHeight), new Arrow(50, height-150, radians(180), 11, width-100, spawnHeight), new Arrow(width/2, 250, radians(-90.0), 8, width/2, spawnHeight)});
+  kitchenScreen = new Screen(loadImage("kitchenScreen.png"), "Kitchen", new Arrow[]{new Arrow(width/2, height-50, radians(90.0), 4, 400, spawnHeight), new Arrow(width/2, 50, radians(-90.0), 2, 200, spawnHeight)});
+  basementScreen = new Screen(loadImage("basementScreen.png"), "Basement", new Arrow[]{new Arrow(width/2, height-100, radians(90.0), 1, 400, spawnHeight), new Arrow(width/2, 50, radians(-90.0), 1, 200, spawnHeight)});
+  masterBedScreen = new Screen(loadImage("masterBedScreen.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2, height-100, radians(90.0), 0, 400, spawnHeight), new Arrow(width/2, 50, radians(-90.0), 0, 200, spawnHeight)});
+  atticHallScreen = new Screen(loadImage("atticHallScreen.png"), "Attic Hall", new Arrow[]{new Arrow(width-50, 100, radians(-45), 10, width/2, spawnHeight), new Arrow(50, height-150, radians(180), 5, width-100, spawnHeight)});
+  atticScreen = new Screen(loadImage("atticScreen.png"), "Attic", new Arrow[]{new Arrow(width/2, 50, radians(-90.0), 9, 200, spawnHeight)});
+  hallScreen = new Screen(loadImage("hallScreen.png"), "Hall", new Arrow[]{new Arrow(width/2, 50, radians(-90.0), 9, 200, spawnHeight)});
+  livingRoomScreen = new Screen(loadImage("livingRoomScreen.png"), "Living Room", new Arrow[]{new Arrow(width/2, 50, radians(-90.0), 9, 200, spawnHeight)});
+
+  screens = new Screen[]{startScreen, explanationScreen, creditScreen, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen, hallScreen, livingRoomScreen};
 }
 
 void draw()
