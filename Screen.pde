@@ -11,11 +11,13 @@ class Screen {
   }
   void update() {
     background(background);
+    textSize(32);
+    text(screen, 10, 30); 
     rect(width/2-25,height/2-25,50,50);
     for(int i=0; i<arrows.length; i++)
     {
       arrows[i].update();
     }
   }
-  
+
 }
