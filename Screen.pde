@@ -3,7 +3,15 @@ class Screen {
   color background;
   String screen;
   Arrow[] arrows;
+  Item[] items;
 
+  Screen(color pBackground, String pScreen, Arrow[] pArrows, Item[] pItems){
+    background = pBackground;
+    screen = pScreen;
+    arrows = pArrows;
+    items = pItems;
+  }
+  
   Screen(color pBackground, String pScreen, Arrow[] pArrows){
     background = pBackground;
     screen = pScreen;
@@ -19,7 +27,6 @@ class Screen {
     background(background);
     textSize(32);
     text(screen, 10, 30); 
-    rect(width/2-25,height/2-25,50,50);
     if(arrows != null)
     {
       for(int i=0; i<arrows.length; i++)
@@ -27,6 +34,7 @@ class Screen {
         arrows[i].update();
       }
     }
+    if(items != null) for(int i=0; i<items.length;i++)items[i].update();
   }
   
   void startScreen()

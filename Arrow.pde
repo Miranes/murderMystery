@@ -20,15 +20,11 @@ class Arrow
    yPos = pYPos; 
    arrow = loadImage("arrow.png");
    rotation = pRotation;
- }
-  
-  //Arrow(float pXPos, float pYPos){
-  //xPos = pXPos; 
-  //yPos = pYPos; 
-  
+ }  
   
  void update()
  {
+   
    pushMatrix();
    translate(xPos,yPos);
    rotate(rotation);
@@ -41,17 +37,17 @@ class Arrow
          currentScreen = transition; 
          mainCharacter.posX = sXPos;
          mainCharacter.posY = sYPos;
-         //mainCharacter.tX = sXPos;
-         //mainCharacter.tY = sYPos;
+         mainCharacter.translateX = sXPos;
+         mainCharacter.translateY = sYPos;
        }   
  }
   
 boolean hover()
 {
-  if(mainCharacter.posX + mainCharacter.playerWidth >= xPos &&
-     mainCharacter.posX + mainCharacter.playerWidth <= xPos + arrowWidth &&
-     mainCharacter.posY + mainCharacter.playerHeight >= yPos &&
-     mainCharacter.posY + mainCharacter.playerHeight <= yPos + arrowHeight) return true;
+  if(mainCharacter.posX + mainCharacter.playerWidth/2 >= xPos &&
+     mainCharacter.posX + mainCharacter.playerWidth/2 <= xPos + arrowWidth &&
+     mainCharacter.posY + mainCharacter.playerHeight/2 >= yPos &&
+     mainCharacter.posY + mainCharacter.playerHeight/2 <= yPos + arrowHeight) return true;
   return false;
 }
   
