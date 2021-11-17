@@ -61,9 +61,6 @@ void setup() {
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   
   //initializing all 11 screens
-  int spawnHeight = height-200;
-  int spawnLeft = 100;
-  int spawnRight = width-100;
   
   int spawnHeight = height-200;
   int spawnLeft = 100;
