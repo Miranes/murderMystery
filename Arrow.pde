@@ -35,8 +35,6 @@ class Arrow
    
    if(mainChar.playerPos()[0] > xPos-25 && mainChar.playerPos()[0] < xPos+25 && mainChar.playerPos()[1] >yPos-25 && mainChar.playerPos()[1] < yPos+25){
     
-     
-     
    }
    
    println(mainChar.playerPos()[0]);
