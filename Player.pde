@@ -7,7 +7,7 @@ class Player
   float translateX = 0; 
   float translateY = 0;
   int playerHeight = 50;
-  int playerWidth = 50; = 50;P
+  int playerWidth = 50;
   void update() { 
 
     if (mousePressed && !isMoving) {
