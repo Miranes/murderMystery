@@ -9,15 +9,29 @@ class Screen {
     screen = pScreen;
     arrows = pArrows;
   }
+  
+  Screen(color pBackground, String pScreen)
+  {
+    background = pBackground;
+    screen = pScreen;
+  }
   void update() {
     background(background);
     textSize(32);
     text(screen, 10, 30); 
     rect(width/2-25,height/2-25,50,50);
-    for(int i=0; i<arrows.length; i++)
+    if(arrows != null)
     {
-      arrows[i].update();
+      for(int i=0; i<arrows.length; i++)
+      {
+        arrows[i].update();
+      }
     }
+  }
+  
+  void startScreen()
+  {
+    
   }
 
 }

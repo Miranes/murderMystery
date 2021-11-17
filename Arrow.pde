@@ -7,6 +7,7 @@ class Arrow
  float rotation;
  PImage arrow;
  int transition;
+ boolean onTop;
  
  
  Arrow(float pXPos, float pYPos, float pRotation, int pTransition)
@@ -33,16 +34,21 @@ class Arrow
    popMatrix();
    
    
-   if(mainChar.playerPos()[0] > xPos-25 && mainChar.playerPos()[0] < xPos+25 && mainChar.playerPos()[1] >yPos-25 && mainChar.playerPos()[1] < yPos+25){
+   if(hover()){
      currentScreen = transition;
+     onTop = true;
    }
-   
-   println(mainChar.playerPos()[0]);
-   
+   else{
+    onTop = false; 
+   }   
  }
   
 boolean hover()
 {
+  if(mainCharacter.posX + mainCharacter.playerWidth >= xPos &&
+     mainCharacter.posX + mainCharacter.playerWidth <= xPos + arrowWidth &&
+     mainCharacter.posY + mainCharacter.playerHeight >= yPos &&
+     mainCharacter.posY + mainCharacter.playerHeight <= yPos + arrowHeight) return true;
   return false;
 }
   
