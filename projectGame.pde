@@ -1,9 +1,8 @@
-// Matias DID THIS 
 //declaring screens
 Screen[] screens;
 Screen startScreen;
-Screen secondScreen;
-Screen thirdScreen;
+Screen explanationScreen;
+Screen creditScreen;
 //Screen fourthScreen;
 //Screen secondScreen;
 //Screen thirdScreen;
@@ -21,12 +20,12 @@ void setup() {
   
   currentScreen = 2;
   player1 = new Player();
-  startScreen = new Screen(color(255,0,0),"something",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
-  secondScreen = new Screen(color(0,255,0),"else",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
-  thirdScreen = new Screen(color(0,0,255),"bro",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
+  startScreen = new Screen(color(255,0,0),"Start Screen",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
+  explanationScreen = new Screen(color(0,255,0),"Explanation",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
+  creditScreen = new Screen(color(0,0,255),"Credits",new Arrow[]{new Arrow(width/2,height-100,radians(90.0)), new Arrow(width/2,50,radians(-90.0))});
 
   
-  screens = new Screen[]{startScreen, secondScreen, thirdScreen};
+  screens = new Screen[]{startScreen, explanationScreen, creditScreen};
 }
 
 Player player1;
