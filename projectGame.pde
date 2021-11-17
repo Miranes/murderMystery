@@ -43,7 +43,7 @@ void setup() {
   
   storyVersion = (int)random(1,7);
   
-  currentScreen = 2;
+  currentScreen = 0;
   mainCharacter = new Player();
   
   //initializing the items
@@ -60,32 +60,25 @@ void setup() {
   
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   
-  //initializing all 11 screens
-  
-  int spawnHeight = height-200;
-  int spawnLeft = 100;
-  int spawnRight = width-150;
   int buttonXOffset = 50;
   int buttonYOffset = 150;
   
-  currentScreen = 4;
-  mainCharacter = new Player();
   //initializing all 11 screens
-  startScreen = new Screen(loadImage("startScreen.png"), "Start Screen");
-  explanationScreen = new Screen(loadImage("explanationScreen.png"), "Explanation");
+  startScreen = new Screen(loadImage("startScreen.png"), "Start Screen", new Button[]{new Button(width/2,height*0.33334,"START"),new Button(width/2,height*0.66667,"CREDITS")});
   creditScreen = new Screen(loadImage("creditScreen.png"), "Credits");
-  respawnScreen = new Screen(loadImage("respawnScreen.png"), "Respawn");
-  entranceScreen = new Screen(loadImage("entranceScreen.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 6, spawnLeft, spawnHeight), new Arrow(width/2, 250, radians(-90.0), 5, width/2, spawnHeight)});
-  upstairHallScreen = new Screen(loadImage("upstairHallScreen.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-10, radians(90.0), 4, width/2, height/2), new Arrow(width-50, height-buttonYOffset, radians(0), 9, spawnLeft, spawnHeight), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 11, spawnRight, spawnHeight), new Arrow(width/2, 250, radians(-90.0), 8, width/2, spawnHeight)});
-  kitchenScreen = new Screen(loadImage("kitchenScreen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 4, spawnRight, spawnHeight), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 7, 200, spawnHeight)});
-  basementScreen = new Screen(loadImage("basementScreen.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6, spawnRight, spawnHeight)});
-  masterBedScreen = new Screen(loadImage("masterBedScreen.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2, height-50, radians(90.0), 5, width/2, spawnHeight)});
-  atticHallScreen = new Screen(loadImage("atticHallScreen.png"), "Attic Hall", new Arrow[]{new Arrow(width-buttonXOffset, buttonYOffset, radians(-45), 10, spawnLeft, spawnHeight), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 5, spawnRight, spawnHeight)});
-  atticScreen = new Screen(loadImage("atticScreen.png"), "Attic", new Arrow[]{new Arrow(buttonXOffset, height-50, radians(125), 9, spawnRight, 200)});
-  hallScreen = new Screen(loadImage("hallScreen.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 5, spawnLeft, spawnHeight), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 12, spawnRight, spawnHeight)});
-  livingRoomScreen = new Screen(loadImage("livingRoomScreen.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 11, spawnLeft, spawnHeight)});
+  explanationScreen = new Screen(loadImage("explanationScreen.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
+  respawnScreen = new Screen(loadImage("respawnScreen.png"), "Respawn", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
+  entranceScreen = new Screen(loadImage("entranceScreen.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 6), new Arrow(width/2, 250, radians(-90.0), 5)});
+  upstairHallScreen = new Screen(loadImage("upstairHallScreen.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 4), new Arrow(width-50, height-buttonYOffset, radians(0), 9), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 11), new Arrow(width/2, 250, radians(-90.0), 8)});
+  kitchenScreen = new Screen(loadImage("kitchenScreen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 4), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 7)});
+  basementScreen = new Screen(loadImage("basementScreen.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6)});
+  masterBedScreen = new Screen(loadImage("masterBedScreen.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2, height-50, radians(90.0), 5)});
+  atticHallScreen = new Screen(loadImage("atticHallScreen.png"), "Attic Hall", new Arrow[]{new Arrow(width-buttonXOffset, buttonYOffset, radians(-45), 10), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 5)});
+  atticScreen = new Screen(loadImage("atticScreen.png"), "Attic", new Arrow[]{new Arrow(buttonXOffset, height-50, radians(125), 9)});
+  hallScreen = new Screen(loadImage("hallScreen.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 5), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 12)});
+  livingRoomScreen = new Screen(loadImage("livingRoomScreen.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 11)});
 
-  screens = new Screen[]{startScreen, explanationScreen, creditScreen, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen, hallScreen, livingRoomScreen};
+  screens = new Screen[]{startScreen, creditScreen, explanationScreen, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen, hallScreen, livingRoomScreen};
 }
 
 void draw()
@@ -100,9 +93,8 @@ void draw()
      } 
   }
   
+  if(currentScreen >= 4) mainCharacter.update();
   
-  
-  mainCharacter.update();
 }
 
 void mouseReleased()

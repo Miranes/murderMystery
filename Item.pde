@@ -26,10 +26,10 @@ class Item
   
 boolean hover()
 {
-  if(mainCharacter.posX + mainCharacter.playerWidth/2 >= xPos &&
-     mainCharacter.posX + mainCharacter.playerWidth/2 <= xPos + itemWidth &&
-     mainCharacter.posY + mainCharacter.playerHeight/2 >= yPos &&
-     mainCharacter.posY + mainCharacter.playerHeight/2 <= yPos + itemHeight)
+  if(mainCharacter.posX >= xPos &&
+     mainCharacter.posX <= xPos + itemWidth &&
+     mainCharacter.posY >= yPos &&
+     mainCharacter.posY <= yPos + itemHeight)
      {
        itemFound = true; 
        return true;

@@ -2,10 +2,12 @@ class Player
 {
 
   boolean isMoving;
-  float posX = 0;
-  float posY = 0;
-  float translateX = 0; 
-  float translateY = 0;
+  float posX = width/2;
+  float posY = height/2;
+  float translateX = width/2; 
+  float translateY = height/2;
+  float nextScreenPosX;
+  float nextScreenPosY;
   int playerHeight = 50;
   int playerWidth = 50;
   
@@ -24,5 +26,7 @@ class Player
 
     rect(posX, posY, 50, 50);
   }
+  
+  
 
 }
