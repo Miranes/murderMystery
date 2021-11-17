@@ -34,12 +34,15 @@ class Arrow
    popMatrix();
    
    
-   if(hover()){
-     currentScreen = transition;
-     onTop = true;
-   }
-   else{
-    onTop = false; 
+      if(hover()){
+     
+     currentScreen = transition; 
+     mainCharacter.posX = sXPos;
+     mainCharacter.posY = sYPos;
+     mainCharacter.tX = sXPos;
+     mainCharacter.tY = sYPos;
+    
+    
    }   
  }
   
