@@ -1,3 +1,4 @@
+//Hey there buddy
 //declaring screens
 Screen[] screens;
 Screen startScreen;
