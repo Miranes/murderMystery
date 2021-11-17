@@ -8,6 +8,8 @@ class Arrow
  PImage arrow;
  int transition;
  boolean onTop;
+ float sXPos = width/2;
+ float sYPos = height/2;
  
  
  Arrow(float pXPos, float pYPos, float pRotation, int pTransition)
@@ -34,16 +36,14 @@ class Arrow
    popMatrix();
    
    
-      if(hover()){
-     
-     currentScreen = transition; 
-     mainCharacter.posX = sXPos;
-     mainCharacter.posY = sYPos;
-     mainCharacter.tX = sXPos;
-     mainCharacter.tY = sYPos;
-    
-    
-   }   
+      if(hover())
+      {
+         currentScreen = transition; 
+         mainCharacter.posX = sXPos;
+         mainCharacter.posY = sYPos;
+         //mainCharacter.tX = sXPos;
+         //mainCharacter.tY = sYPos;
+       }   
  }
   
 boolean hover()
