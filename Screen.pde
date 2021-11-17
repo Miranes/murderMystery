@@ -1,30 +1,29 @@
 class Screen {
-  //PImame backgroundImg;
-  color background;
+  PImame backgroundImg;
   String screen;
   Arrow[] arrows;
   Item[] items;
 
-  Screen(color pBackground, String pScreen, Arrow[] pArrows, Item[] pItems){
-    background = pBackground;
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems){
+    backgroundImg = pBackground;
     screen = pScreen;
     arrows = pArrows;
     items = pItems;
   }
   
-  Screen(color pBackground, String pScreen, Arrow[] pArrows){
-    background = pBackground;
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows){
+    backgroundImg = pBackground;
     screen = pScreen;
     arrows = pArrows;
   }
   
-  Screen(color pBackground, String pScreen)
+  Screen(PImage pBackground, String pScreen)
   {
-    background = pBackground;
+    backgroundImg = pBackground;
     screen = pScreen;
   }
   void update() {
-    background(background);
+    background(backgroundImg);
     textSize(32);
     text(screen, 10, 30); 
     if(arrows != null)
