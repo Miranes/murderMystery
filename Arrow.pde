@@ -47,19 +47,19 @@ class Arrow
 //Check where the arrows start and finish to improve the hovers method (not working properly)
 boolean hoverPlayer()
 {
-  if(mainCharacter.posX + mainCharacter.playerWidth/2 >= xPos &&
-     mainCharacter.posX + mainCharacter.playerWidth/2 <= xPos + arrowWidth &&
-     mainCharacter.posY + mainCharacter.playerHeight/2 >= yPos &&
-     mainCharacter.posY + mainCharacter.playerHeight/2 <= yPos + arrowHeight) return true;
+  if(mainCharacter.posX + mainCharacter.playerWidth/2 >= xPos-25 &&
+     mainCharacter.posX + mainCharacter.playerWidth/2 <= xPos + arrowWidth-25 &&
+     mainCharacter.posY + mainCharacter.playerHeight/2 >= yPos-25 &&
+     mainCharacter.posY + mainCharacter.playerHeight/2 <= yPos + arrowHeight-25) return true;
   return false;
 }
 
 boolean hoverMouse()
 {
- if(mouseX >= xPos &&
-    mouseX <= xPos+arrowWidth &&
-    mouseY >= yPos &&
-    mouseY <= yPos+arrowHeight) return true;
+ if(mouseX >= xPos-25 &&
+    mouseX <= xPos+arrowWidth-25 &&
+    mouseY >= yPos-25 &&
+    mouseY <= yPos+arrowHeight-25) return true;
     return false;
 }
   
