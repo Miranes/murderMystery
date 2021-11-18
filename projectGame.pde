@@ -99,5 +99,9 @@ void draw()
 
 void mouseReleased()
 {
- mainCharacter.isMoving = false; 
+  for(int i=0; i<screens[currentScreen].arrows.length ; i++)
+  {
+    screens[currentScreen].arrows[i].clicked = false;
+  }
+  mainCharacter.isMoving = false; 
 }

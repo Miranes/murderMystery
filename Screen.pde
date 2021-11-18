@@ -55,11 +55,13 @@ class Screen {
         {
           currentScreen = 3;
           arrows[i].clicked = true;
+          respawnScreen.arrows[i].clicked = true;
         }
         else if(currentScreen == 3 && mousePressed && arrows[i].hoverMouse() && !arrows[i].clicked)
         {
           currentScreen = 4;
           arrows[i].clicked = true;
+          mainCharacter.isMoving = true;
         }
       }
     }
