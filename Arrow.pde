@@ -26,8 +26,6 @@ class Arrow
  {
      pushMatrix();
      translate(xPos,yPos);
-     fill(0);
-     rect(-25,-25,50,50);
      fill(255);
      rotate(rotation);
      image(arrow,-25,-25,50,50);
