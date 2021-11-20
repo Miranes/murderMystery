@@ -2,7 +2,7 @@ class Inventory
 {
   float posX = 0;
   float posY = 0;
-  int inventoryWidth = width;
+  int inventoryWidth = 400;
   int inventoryHeight = 103;
   ArrayList<InventoryItem> itemsInInventory;
   
@@ -14,7 +14,7 @@ class Inventory
   void update()
   {
    
-   fill(255,10);
+   fill(255);
    rect(posX,posY, inventoryWidth,inventoryHeight);
    if(itemsInInventory.size() > 0)
    {

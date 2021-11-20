@@ -45,8 +45,8 @@ class Arrow
 //Check where the arrows start and finish to improve the hovers method (not working properly)
 boolean hoverPlayer()
 {
-  if(mainCharacter.posX + mainCharacter.playerWidth/2 >= xPos-25 &&
-     mainCharacter.posX + mainCharacter.playerWidth/2 <= xPos + arrowWidth-25 &&
+  if(mainCharacter.posX >= xPos-25 &&
+     mainCharacter.posX <= xPos + arrowWidth-25 &&
      mainCharacter.posY + mainCharacter.playerHeight/2 >= yPos-25 &&
      mainCharacter.posY + mainCharacter.playerHeight/2 <= yPos + arrowHeight-25) return true;
   return false;
