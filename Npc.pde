@@ -27,7 +27,7 @@ class Npc
   {
     try
     {
-      image(npcImg,posX,posY);
+      image(npcImg,posX,posY, npcWidth, npcHeight);
     }
     catch(Exception e)
     {
