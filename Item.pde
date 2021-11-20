@@ -32,8 +32,8 @@ boolean hover()
 {
   if(mainCharacter.posX >= xPos &&
      mainCharacter.posX <= xPos + itemWidth &&
-     mainCharacter.posY >= yPos &&
-     mainCharacter.posY <= yPos + itemHeight)
+     mainCharacter.posY + mainCharacter.imageHeight/2 >= yPos &&
+     mainCharacter.posY + mainCharacter.imageHeight/2 <= yPos + itemHeight)
      {
        itemFound = true; 
        return true;
