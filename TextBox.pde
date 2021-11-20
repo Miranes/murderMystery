@@ -1,44 +1,26 @@
-class Button
+class TextBox
 {
  float xPos;
  float yPos;
- int boxWidth = 250;
- int boxHeight = 70;
+ int boxWidth;
+ int boxHeight;
  int[] rgbColor = new int[3];
  String boxText;
- int textSize = 50;
+ int textSize;
  boolean clicked;
   
-  Button(float pXPos, float pYPos, String pBoxText)
+  TextBox(float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText)
   {
     xPos = pXPos;
     yPos = pYPos;
+    boxWidth = pBoxWidth;
+    boxHeight = pBoxHeight;
+    textSize = pTextSize;
     boxText = pBoxText;
   }
   
   void update()
   {
-    if(hover())
-    {
-      if(boxWidth != 300)
-      {
-        rgbColor[0] = 120;
-        rgbColor[1] = 10;
-        rgbColor[2] = 20;
-        boxWidth = 300;
-        boxHeight = 84;
-        textSize = 60;
-      }
-    }
-    else if(boxWidth != 250)
-    {
-      rgbColor[0] = 0;
-      rgbColor[1] = 0;
-      rgbColor[2] = 0;
-      boxWidth = 250;
-      boxHeight = 70;
-      textSize = 50;
-    }
     
     fill(rgbColor[0],rgbColor[1],rgbColor[2],170);  
     noStroke();

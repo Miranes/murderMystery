@@ -3,13 +3,22 @@ class Screen {
   String screen;
   Arrow[] arrows;
   Item[] items;
-  Button[] buttons;
+  TextBox[] textboxes;
+  Npc[] npcs = null;
 
-  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems){
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems, Npc[] pNpcs){
     backgroundImg = pBackground;
     screen = pScreen;
     arrows = pArrows;
     items = pItems;
+    npcs = pNpcs;
+  }
+  
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs){
+    backgroundImg = pBackground;
+    screen = pScreen;
+    arrows = pArrows;
+    npcs = pNpcs;
   }
   
   Screen(PImage pBackground, String pScreen, Arrow[] pArrows){
@@ -18,32 +27,54 @@ class Screen {
     arrows = pArrows;
   }
   
-  Screen(PImage pBackground, String pScreen, Button[] pButtons)
+  Screen(PImage pBackground, String pScreen, TextBox[] pTextboxes)
   {
     backgroundImg = pBackground;
     screen = pScreen;
-    buttons = pButtons;
+    textboxes = pTextboxes;
   }
-  Screen(PImage pBackground, String pScreen)
-  {
-    backgroundImg = pBackground;
-    screen = pScreen;
-  }
+  
   void update() {
     background(backgroundImg);
     textSize(32);
     textAlign(CENTER,CENTER);
     text(screen, width/2, 30); 
-    if(buttons != null)
+    if(textboxes != null)
     {
-      for(int i=0; i<buttons.length; i++)
+      if(currentScreen == 0)
       {
-         buttons[i].update(); 
-         if(mousePressed && buttons[i].hover() && !buttons[i].clicked)
-         {
-          if(i == 0) currentScreen = 2;
-          else currentScreen = 1;
-         }
+        for(int i=0; i<textboxes.length; i++)
+        {
+           //hovering over start screen's buttons
+           if(textboxes[i].hover())
+           {
+             if(textboxes[i].boxWidth != 300)
+              {
+                textboxes[i].rgbColor[0] = 120;
+                textboxes[i].rgbColor[1] = 10;
+                textboxes[i].rgbColor[2] = 20;
+                textboxes[i].boxWidth = 300;
+                textboxes[i].boxHeight = 84;
+                textboxes[i].textSize = 60;
+              }
+              if(mousePressed && !textboxes[i].clicked)
+              {
+                if(i == 0) currentScreen = 2;
+                else currentScreen = 1;
+              }
+           }
+           else if(textboxes[i].boxWidth != 250)
+            {
+              textboxes[i].rgbColor[0] = 0;
+              textboxes[i].rgbColor[1] = 0;
+              textboxes[i].rgbColor[2] = 0;
+              textboxes[i].boxWidth = 250;
+              textboxes[i].boxHeight = 70;
+              textboxes[i].textSize = 50;
+            }
+            
+            textboxes[i].update(); 
+        }
       }
     }
     if(arrows != null)
@@ -63,8 +94,14 @@ class Screen {
           arrows[i].clicked = true;
           mainCharacter.isMoving = true;
         }
+        else if(currentScreen == 1 && mousePressed && arrows[i].hoverMouse() && !arrows[i].clicked)
+        {
+         currentScreen = 0;
+         arrows[i].clicked = true;
+        }
       }
     }
+    if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
     if(items != null) for(int i=0; i<items.length;i++)items[i].update();
   }
   

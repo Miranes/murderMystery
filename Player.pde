@@ -1,6 +1,5 @@
 class Player
 {
-
   boolean isMoving;
   float posX = width/2;
   float posY = height/2;
@@ -23,7 +22,7 @@ class Player
       posX = lerp(posX, translateX, .04);
       posY = lerp(posY, translateY, .04);
     } 
-
+    
     rect(posX, posY, 50, 50);
   }
   
