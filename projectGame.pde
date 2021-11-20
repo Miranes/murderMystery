@@ -1,4 +1,3 @@
-
 //declaring screens
 Screen[] screens;
 Screen startScreen;
@@ -80,7 +79,7 @@ void setup() {
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   
   //initializing npcs
-  wife = new Npc(width/2-38,height/2+28,200,200,"wife.png",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
+ wife = new Npc(width/2-38,height/2+28,200,200,"wife.png",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
   brother = new Npc(width/2+18,height/2-2,230,230,"brother.png",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
   butler = new Npc(width/2+98,height/2-22,250,250,"butler.png",new TextBox(width/2+330,height/2-22,180,40,20,"Hey, you! Thieve!"));
   maid = new Npc(width/2-56,height/2+28,200,200,"maid.png",new TextBox(width/2+200,height/2,180,40,20,"Hey, you! Thieve!"));
