@@ -93,7 +93,7 @@ void setup() {
   int buttonYOffset = 150;
   
   //initializing all 11 screens
-  startScreen = new Screen(loadImage("entrance.png"), "Start Screen", new TextBox[]{new TextBox(width/2,height*0.33334,250,70,50,"START"),new TextBox(width/2,height*0.66667,250,70,50,"CREDITS")});
+  startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,70,50,"START"),new TextBox(width/2,height*0.66667,250,70,50,"CREDITS")});
   creditScreen = new Screen(loadImage("entrance.png"), "Credits", new Arrow[]{new Arrow(buttonXOffset,height/2,radians(180.0),0)});
   explanationScreen = new Screen(loadImage("entrance.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
   respawnScreen = new Screen(loadImage("entrance.png"), "Respawn", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
