@@ -9,6 +9,12 @@ class Player
   float nextScreenPosY;
   int playerHeight = 50;
   int playerWidth = 50;
+  PImage charImg;
+  
+  Player()
+  {
+   charImg = loadImage("ghost.png"); 
+  }
   
   void update() { 
 
@@ -23,7 +29,7 @@ class Player
       posY = lerp(posY, translateY, .04);
     } 
     
-    rect(posX, posY, 50, 50);
+    image(charImg,posX, posY, 200, 200);
   }
   
   

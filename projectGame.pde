@@ -38,6 +38,13 @@ Npc cat;
 //declaring player
 Player mainCharacter;
 
+//declaring Inventory 
+Inventory inventory;
+
+//Game font
+PFont pixelFont;
+
+String[] fontList = PFont.list();
 
 int currentScreen;
 
@@ -46,24 +53,31 @@ int storyVersion;
 
 
 void setup() {
+ 
   size(1200, 675);
-  
+  pixelFont = createFont("pixelFont.ttf",72);
+  textFont(pixelFont);
+
+
   storyVersion = (int)random(1,7);
   
-  currentScreen = 4;
+  currentScreen = 0;
   mainCharacter = new Player();
   
+  
   //initializing the items
-  box = new Item(200,height/2,50,50);
-  rope = new Item(width - 200, height - 60,50,50);
-  knife = new Item(width/2, 60, 50,50);
-  fork = new Item(width/2, height - 120,50,50);
-  phone = new Item(width/2, height - 180,50,50);
-  pen = new Item(width/2, height - 240,50,50);
-  pillow = new Item(width/2, height - 300,50,50);
-  pills = new Item(width/2, height - 360,50,50);
-  doorKey = new Item(width/2, height - 420,50,50);
-  matches = new Item(width/2, height - 480,50,50);
+  box = new Item(200,height/2,50,50,new InventoryItem(loadImage("maid.png"),10,10));
+  rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("maid.png"),10,10));
+  knife = new Item(width/2, 60, 50,50,new InventoryItem(loadImage("maid.png"),10,10));
+  fork = new Item(width/2, height - 120,50,50,new InventoryItem(loadImage("wife.png"),50,10));
+  phone = new Item(width/2, height - 180,50,50,new InventoryItem(loadImage("maid.png"),50,50));
+  pen = new Item(width/2, height - 240,50,50,new InventoryItem(loadImage("maid.png"),50,50));
+  pillow = new Item(width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),50,50));
+  pills = new Item(width/2, height - 360,50,50,new InventoryItem(loadImage("maid.png"),50,50));
+  doorKey = new Item(width/2, height - 420,50,50,new InventoryItem(loadImage("maid.png"),50,50));
+  matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("maid.png"),50,50));
+  
+  items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   
   //initializing npcs
   wife = new Npc(width/2,height/2,200,200,"wife.png",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
@@ -72,7 +86,8 @@ void setup() {
   maid = new Npc(width/2,height/2,200,200,"maid.png",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
   cat = new Npc(width/2,height/2,100,100,new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
   
-  items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
+  //initializing inventory
+  inventory = new Inventory();
   
   int buttonXOffset = 50;
   int buttonYOffset = 150;
@@ -82,7 +97,7 @@ void setup() {
   creditScreen = new Screen(loadImage("entrance.png"), "Credits", new Arrow[]{new Arrow(buttonXOffset,height/2,radians(180.0),0)});
   explanationScreen = new Screen(loadImage("entrance.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
   respawnScreen = new Screen(loadImage("entrance.png"), "Respawn", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
-  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 6), new Arrow(width/2, 250, radians(-90.0), 5)},new Npc[]{butler});
+  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 6), new Arrow(width/2, 250, radians(-90.0), 5)},new Item[]{knife, fork},new Npc[]{butler});
   upstairHallScreen = new Screen(loadImage("upstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 4), new Arrow(width-50, height-buttonYOffset, radians(0), 9), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 11), new Arrow(width/2, 250, radians(-90.0), 8)});
   kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 4), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 7)},new Npc[]{maid});
   basementScreen = new Screen(loadImage("basement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6)});
@@ -97,7 +112,6 @@ void setup() {
 
 void draw()
 {
-  
   for(int i=0; i<screens.length; i++)
   {
      if(i == currentScreen)
