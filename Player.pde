@@ -34,9 +34,6 @@ class Player
    {
      spritePosX = i % spriteColumns*imageWidth;
      spritePosY = i / spriteColumns*imageHeight;
-     println("posX: "+spritePosX);
-     println("posY: "+spritePosY);
-     println("imageWidth: "+ imageWidth);
      images[i] = charImg.get(spritePosX,spritePosY,imageWidth,imageHeight);
    }
    
@@ -68,10 +65,11 @@ class Player
       posX = lerp(posX, translateX, .04);
       posY = lerp(posY, translateY, .04);
     } 
-
+    
+    tint(255,(sin(millis()/300.0)+1.2)*255);
     if(!left) image(images[currentImg],posX-playerWidth/2,posY,playerWidth,playerHeight);
     else image(images[currentImg],-posX-playerWidth/2,posY,playerWidth,playerHeight);
-      
+    tint(255,255);
     popMatrix();
     if(frameCount % 7 == 0) nextImg();
     if(currentImg > 5) currentImg = 0; 
