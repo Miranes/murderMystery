@@ -8,7 +8,7 @@ class Arrow
  PImage arrow;
  int transition;
  float sXPos = width/2;
- float sYPos = height/2;
+ float sYPos = height/2 + 30;
  boolean clicked = false;
  
  

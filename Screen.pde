@@ -50,11 +50,8 @@ class Screen {
            {
              if(textboxes[i].boxWidth != 300)
               {
-                textboxes[i].rgbColor[0] = 120;
-                textboxes[i].rgbColor[1] = 10;
-                textboxes[i].rgbColor[2] = 20;
                 textboxes[i].boxWidth = 300;
-                textboxes[i].boxHeight = 84;
+                textboxes[i].boxHeight = 96;
                 textboxes[i].textSize = 60;
               }
               if(mousePressed && !textboxes[i].clicked)
@@ -65,11 +62,8 @@ class Screen {
            }
            else if(textboxes[i].boxWidth != 250)
             {
-              textboxes[i].rgbColor[0] = 0;
-              textboxes[i].rgbColor[1] = 0;
-              textboxes[i].rgbColor[2] = 0;
               textboxes[i].boxWidth = 250;
-              textboxes[i].boxHeight = 70;
+              textboxes[i].boxHeight = 80;
               textboxes[i].textSize = 50;
             }
             
@@ -103,7 +97,8 @@ class Screen {
     }
     if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
     if(items != null) for(int i=0; i<items.length;i++)items[i].update();
-    inventory.update();
+    
+    if(currentScreen >= 4) inventory.update();
   }
   
 }

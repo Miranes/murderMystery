@@ -2,14 +2,13 @@ class Player
 {
   boolean isMoving;
   float posX = width/2;
-  float posY = height/2;
+  float posY = height/2+30;
   float translateX = width/2; 
-  float translateY = height/2;
+  float translateY = height/2+30;
   float nextScreenPosX;
   float nextScreenPosY;
   int playerHeight = 200;
   int playerWidth = 200;
-  PImage charImg;
   int spriteWidth;
   int spriteHeight;
   int imageWidth;
@@ -19,6 +18,7 @@ class Player
   int spriteColumns = 3;
   int spriteRows = 2;
   int currentImg = 0;
+  PImage charImg;
   PImage[] images = new PImage[6];
   boolean left;
   
@@ -41,7 +41,8 @@ class Player
   
   void update() { 
 
-    if (mousePressed && !isMoving) {
+    if (mousePressed && !isMoving && !inventory.overButton()) 
+    {
       translateX = mouseX - playerWidth/2 + 100;
       translateY = mouseY - playerHeight/2;
       isMoving = true;
@@ -57,11 +58,10 @@ class Player
        scale(1,1);
        left = false;
      }
-     
-     
 
     if (posX != translateX && posY != translateY) 
     {
+
       posX = lerp(posX, translateX, .04);
       posY = lerp(posY, translateY, .04);
     } 
@@ -71,7 +71,7 @@ class Player
     else image(images[currentImg],-posX-playerWidth/2,posY,playerWidth,playerHeight);
     tint(255,255);
     popMatrix();
-    if(frameCount % 7 == 0) nextImg();
+    if(frameCount % 6 == 0) nextImg();
     if(currentImg > 5) currentImg = 0; 
 
   }

@@ -20,7 +20,8 @@ class Item
   
   void update()
   {
-    if(hover())inventory.itemsInInventory.add(itemInv);
+    
+    if(hover()&& !inventory.itemsInInventory.contains(itemInv))inventory.itemsInInventory.add(itemInv);
     else rgbItem = 255;
     fill(rgbItem);
     rect(xPos,yPos,itemWidth,itemHeight);

@@ -8,8 +8,20 @@ class TextBox
  String boxText;
  int textSize;
  boolean clicked;
+ PImage boxImg = null;
+  
+  
+  TextBox(float pXPos, float pYPos, int pBoxWidth, int pBoxHeight)
+  {
+    this(pXPos,pYPos,pBoxWidth,pBoxHeight,1,"",null);
+  }
   
   TextBox(float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText)
+  {
+    this(pXPos,pYPos,pBoxWidth,pBoxHeight,pTextSize,pBoxText,null);
+  }
+  
+  TextBox(float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxImg)
   {
     xPos = pXPos;
     yPos = pYPos;
@@ -17,18 +29,26 @@ class TextBox
     boxHeight = pBoxHeight;
     textSize = pTextSize;
     boxText = pBoxText;
+    boxImg = pBoxImg;
   }
   
   void update()
   {
     
-    fill(rgbColor[0],rgbColor[1],rgbColor[2],170);  
     noStroke();
-    rect(xPos-boxWidth/2, yPos-boxHeight/2, boxWidth, boxHeight,7); 
-    textAlign(CENTER,CENTER);
-    textSize(textSize);
-    fill(255);
-    text(boxText,xPos,yPos-textSize/10);
+    if(boxImg != null) image(boxImg,xPos-boxWidth/2,yPos-boxHeight/2,boxWidth,boxHeight);
+    else
+    {
+      fill(rgbColor[0],rgbColor[1],rgbColor[2],170);  
+      rect(xPos-boxWidth/2, yPos-boxHeight/2, boxWidth, boxHeight,7); 
+    }
+    if(boxText != null)
+    {
+      textAlign(CENTER,CENTER);
+      textSize(textSize);
+      fill(255);
+      text(boxText,xPos,yPos-textSize/10);
+    }
    
   }
   
