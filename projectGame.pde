@@ -61,20 +61,10 @@ void setup() {
 
   storyVersion = (int)random(1,7);
   
-  currentScreen = 6;
+  currentScreen = 0;
   mainCharacter = new Player();
     
-  //initializing the items
-  box = new Item(200,height/2,50,50,new InventoryItem(loadImage("brother.png"),20 +950,height/2-30 -270));
-  rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("butler.png"),60 +950,height/2-30 -270));
-  knife = new Item(width/2, 60, 50,50,new InventoryItem(loadImage("maid.png"),100 +950,height/2-30 -270));
-  fork = new Item(width/2, height - 120,50,50,new InventoryItem(loadImage("wife.png"),140 +950,height/2-30 -270));
-  phone = new Item(width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),20 +950,height/2+30-270));
-  pen = new Item(width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),60 +950,height/2+30 -270));
-  pillow = new Item(width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),100 +950,height/2+30 -270));
-  pills = new Item(width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),140 +950,height/2+30 -270));
-  doorKey = new Item(width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),50 +950,50 -270));
-  matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),50 +950,50 -270));
+
   
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxImg
@@ -94,6 +84,18 @@ void setup() {
   
   int buttonXOffset = 50;
   int buttonYOffset = 150;
+  
+    //initializing the items
+  box = new Item(200,height/2,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX,20 + inventory.posY));
+  rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("butler.png"),40 + inventory.posX,20 + inventory.posY));
+  knife = new Item(width/2, 60, 50,50,new InventoryItem(loadImage("maid.png"),80 + inventory.posX,20 + inventory.posY));
+  fork = new Item(width/2, height - 120,50,50,new InventoryItem(loadImage("wife.png"),120 + inventory.posX,20 + inventory.posY));
+  phone = new Item(width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX,80 + inventory.posY));
+  pen = new Item(width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),40 + inventory.posX,80 + inventory.posY));
+  pillow = new Item(width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),80 + inventory.posX,80 + inventory.posY));
+  pills = new Item(width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),120 + inventory.posX,80 + inventory.posY));
+  doorKey = new Item(width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),30 + inventory.posX,80 + inventory.posY));
+  matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),30 + inventory.posX,80 + inventory.posY));
   
   //initializing all 11 screens
   startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
