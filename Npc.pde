@@ -4,36 +4,37 @@ class Npc
   float posY;
   int npcWidth;
   int npcHeight;
-  String npcImgPath;
-  PImage npcImg;
-  TextBox dialog;
+  String npcImgName;
+  TextBox dialogue;
+  Animation npcAnimation;
   
-  Npc(float pPosX, float pPosY, int pNpcWidth, int pNpcHeight, TextBox pDialog)
-  {
-     this(pPosX,pPosY,pNpcWidth,pNpcHeight,"",pDialog);
-  }
-  Npc(float pPosX, float pPosY, int pNpcWidth, int pNpcHeight, String pNpcImgPath, TextBox pDialog)
+
+  Npc(float pPosX, float pPosY, int pNpcWidth, int pNpcHeight, String pNpcImgName, TextBox pDialogue,  Animation pNpcAnimation)
   {
      posX = pPosX;
      posY = pPosY;
      npcWidth = pNpcWidth;
      npcHeight = pNpcHeight;
-     npcImgPath = pNpcImgPath;
-     npcImg = loadImage(npcImgPath);
-     dialog = pDialog;
+     npcImgName = pNpcImgName;
+     dialogue = pDialogue;
+     npcAnimation = pNpcAnimation;
+     npcAnimation.posX = pPosX;
+     npcAnimation.posY = pPosY;
+     npcAnimation.npcImgWidth = pNpcWidth;
+     npcAnimation.npcImgHeight = pNpcHeight;
   }
   
   void update()
   {
     try
     {
-      image(npcImg,posX,posY, npcWidth, npcHeight);
+      npcAnimation.update();
     }
     catch(Exception e)
     {
       rect(posX,posY,npcWidth,npcHeight);
     }
-    dialog.update();
+    dialogue.update();
   }
   
 }

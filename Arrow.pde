@@ -32,14 +32,24 @@ class Arrow
      popMatrix();
     
 
-    if(hoverPlayer())
+    if(hoverPlayer() && currentScreen >= 6)
     {
        currentScreen = transition; 
        mainCharacter.posX = sXPos;
        mainCharacter.posY = sYPos;
        mainCharacter.translateX = sXPos;
        mainCharacter.translateY = sYPos;
-     }   
+     }
+     else if(hoverMouse() && mousePressed && !clicked && currentScreen < 6)
+     {
+       
+       for(int i=2; i<6; i++)
+       {
+        screens[i].arrows[0].clicked = true; 
+       }
+       if(screens[currentScreen].screen == "Respawn") mainCharacter.isMoving = true;
+       currentScreen = transition;
+     }
  }
 
 //Check where the arrows start and finish to improve the hovers method (not working properly)

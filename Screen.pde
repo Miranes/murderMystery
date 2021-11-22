@@ -76,29 +76,12 @@ class Screen {
       for(int i=0; i<arrows.length; i++)
       {
         arrows[i].update();
-        if(currentScreen == 2 && mousePressed && arrows[i].hoverMouse() && !arrows[i].clicked)
-        {
-          currentScreen = 3;
-          arrows[i].clicked = true;
-          respawnScreen.arrows[i].clicked = true;
-        }
-        else if(currentScreen == 3 && mousePressed && arrows[i].hoverMouse() && !arrows[i].clicked)
-        {
-          currentScreen = 4;
-          arrows[i].clicked = true;
-          mainCharacter.isMoving = true;
-        }
-        else if(currentScreen == 1 && mousePressed && arrows[i].hoverMouse() && !arrows[i].clicked)
-        {
-         currentScreen = 0;
-         arrows[i].clicked = true;
-        }
       }
     }
     if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
     if(items != null) for(int i=0; i<items.length;i++)items[i].update();
     
-    if(currentScreen >= 4) inventory.update();
+    if(currentScreen >= 6) inventory.update();
   }
   
 }

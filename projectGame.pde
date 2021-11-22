@@ -1,7 +1,9 @@
 //declaring screens
 Screen[] screens;
 Screen startScreen;
-Screen explanationScreen;
+Screen explanationScreen1;
+Screen explanationScreen2;
+Screen explanationScreen3;
 Screen creditScreen;
 Screen respawnScreen;
 Screen entranceScreen;
@@ -79,11 +81,11 @@ void setup() {
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   
   //initializing npcs
-  wife = new Npc(width/2-38,height/2+28,200,200,"wife.png",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
-  brother = new Npc(width/2+18,height/2-2,230,230,"brother.png",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
-  butler = new Npc(width/2+98,height/2-22,250,250,"butler.png",new TextBox(width/2+330,height/2-22,180,40,20,"Hey, you! Thieve!"));
-  maid = new Npc(width/2-56,height/2+28,200,200,"maid.png",new TextBox(width/2+200,height/2,180,40,20,"Hey, you! Thieve!"));
-  cat = new Npc(width/2,height/2,100,100,new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"));
+  wife = new Npc(width/2-38,height/2+28,200,200,"wife",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("wifeIdle.png"),6,1));
+  brother = new Npc(width/2+100,height/2-2,230,230,"brother",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("brotherIdle.png"),5,1));
+  butler = new Npc(width/2-98,height/2-2,230,230,"butler",new TextBox(width/2+330,height/2-22,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("butlerIdle.png"),4,1));
+  maid = new Npc(width/2-56,height/2+28,200,200,"maid",new TextBox(width/2+200,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("maidIdle.png"),4,1));
+  cat = new Npc(width/2,height/2,100,100,"cat",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("butlerIdle.png"),4,1));
   
   //initializing inventory
   inventory = new Inventory();
@@ -94,23 +96,26 @@ void setup() {
   //initializing all 11 screens
   startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
   creditScreen = new Screen(loadImage("entrance.png"), "Credits", new Arrow[]{new Arrow(buttonXOffset,height/2,radians(180.0),0)});
-  explanationScreen = new Screen(loadImage("entrance.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
-  respawnScreen = new Screen(loadImage("entrance.png"), "Respawn", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
-  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 6), new Arrow(width/2, 250, radians(-90.0), 5)},new Item[]{knife, fork, box, rope, phone, pen, pillow, pills},new Npc[]{butler});
-  upstairHallScreen = new Screen(loadImage("upstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 4), new Arrow(width-50, height-buttonYOffset, radians(0), 9), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 11), new Arrow(width/2, 250, radians(-90.0), 8)});
-  kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 4), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 7)},new Npc[]{maid});
-  basementScreen = new Screen(loadImage("basement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6)});
-  masterBedScreen = new Screen(loadImage("bedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2, height-50, radians(90.0), 5)},new Npc[]{wife});
-  atticHallScreen = new Screen(loadImage("atticHall.png"), "Attic Hall", new Arrow[]{new Arrow(width-buttonXOffset, buttonYOffset, radians(-45), 10), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 5)});
-  atticScreen = new Screen(loadImage("attic.png"), "Attic", new Arrow[]{new Arrow(buttonXOffset, height-50, radians(125), 9)},new Npc[]{cat});
-  hallScreen = new Screen(loadImage("leftHallway.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 5), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 12)});
-  livingRoomScreen = new Screen(loadImage("livingRoom.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 11)},new Npc[]{brother});
+  explanationScreen1 = new Screen(loadImage("explanationScreen1.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
+  explanationScreen2 = new Screen(loadImage("explanationScreen2.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
+  explanationScreen3 = new Screen(loadImage("explanationScreen3.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),5)});
+  respawnScreen = new Screen(loadImage("respawnScreen.png"), "Respawn", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),6)});
+  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 8), new Arrow(width/2, 250, radians(-90.0), 7)},new Item[]{knife, fork, box, rope, phone, pen, pillow, pills},new Npc[]{butler});
+  upstairHallScreen = new Screen(loadImage("upstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 6), new Arrow(width-50, height-buttonYOffset, radians(0), 11), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 13), new Arrow(width/2, 250, radians(-90.0), 10)});
+  kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 9)},new Npc[]{maid});
+  basementScreen = new Screen(loadImage("basement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 8)});
+  masterBedScreen = new Screen(loadImage("bedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2, height-50, radians(90.0), 7)},new Npc[]{wife});
+  atticHallScreen = new Screen(loadImage("atticHall.png"), "Attic Hall", new Arrow[]{new Arrow(width-buttonXOffset, buttonYOffset, radians(-45), 12), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 7)});
+  atticScreen = new Screen(loadImage("attic.png"), "Attic", new Arrow[]{new Arrow(buttonXOffset, height-50, radians(125), 11)},new Npc[]{cat});
+  hallScreen = new Screen(loadImage("leftHallway.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 7), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 14)});
+  livingRoomScreen = new Screen(loadImage("livingRoom.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 13)},new Npc[]{brother});
 
-  screens = new Screen[]{startScreen, creditScreen, explanationScreen, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen, hallScreen, livingRoomScreen};
+  screens = new Screen[]{startScreen, creditScreen, explanationScreen1, explanationScreen2, explanationScreen3, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen, hallScreen, livingRoomScreen};
 }
 
 void draw()
 {
+
   for(int i=0; i<screens.length; i++)
   {
      if(i == currentScreen)
@@ -120,7 +125,7 @@ void draw()
      } 
   }
   
-  if(currentScreen >= 4) mainCharacter.update();
+  if(currentScreen >= 6) mainCharacter.update();
   
 }
 
