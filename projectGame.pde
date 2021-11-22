@@ -59,13 +59,11 @@ void setup() {
   pixelFont = createFont("pixelFont.ttf",72);
   textFont(pixelFont);
 
-
   storyVersion = (int)random(1,7);
   
-  currentScreen = 0;
+  currentScreen = 6;
   mainCharacter = new Player();
-  
-  
+    
   //initializing the items
   box = new Item(200,height/2,50,50,new InventoryItem(loadImage("brother.png"),20,height/2-30));
   rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("butler.png"),60,height/2-30));
@@ -79,13 +77,17 @@ void setup() {
   matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),50,50));
   
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
+  //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxImg
   
+  float dialogueBoxX = width/2;
+  float dialogueBoxY = height - 48;
+  PImage dialogueBoxImg = loadImage("dialogueBox.png");
   //initializing npcs
-  wife = new Npc(width/2-38,height/2+28,200,200,"wife",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("wifeIdle.png"),6,1));
-  brother = new Npc(width/2+100,height/2-2,230,230,"brother",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("brotherIdle.png"),5,1));
-  butler = new Npc(width/2-98,height/2-2,230,230,"butler",new TextBox(width/2+330,height/2-22,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("butlerIdle.png"),4,1));
-  maid = new Npc(width/2-56,height/2+28,200,200,"maid",new TextBox(width/2+200,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("maidIdle.png"),4,1));
-  cat = new Npc(width/2,height/2,100,100,"cat",new TextBox(width/2+260,height/2,180,40,20,"Hey, you! Thieve!"),new Animation(loadImage("butlerIdle.png"),4,1));
+  wife = new Npc(width/2-38,height/2+28,200,200,"wife",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("wifeIdle.png"),6,1));
+  brother = new Npc(width/2+100,height/2-2,230,230,"brother",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("brotherIdle.png"),5,1));
+  butler = new Npc(width/2-98,height/2-2,230,230,"butler",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("butlerIdle.png"),4,1));
+  maid = new Npc(width/2-56,height/2+28,200,200,"maid",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("maidIdle.png"),4,1));
+  cat = new Npc(width/2,height/2,100,100,"cat",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("butlerIdle.png"),4,1));
   
   //initializing inventory
   inventory = new Inventory();
@@ -95,7 +97,7 @@ void setup() {
   
   //initializing all 11 screens
   startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
-  creditScreen = new Screen(loadImage("entrance.png"), "Credits", new Arrow[]{new Arrow(buttonXOffset,height/2,radians(180.0),0)});
+  creditScreen = new Screen(loadImage("creditScreen.png"), "Credits", new Arrow[]{new Arrow(buttonXOffset,height/2,radians(180.0),0)});
   explanationScreen1 = new Screen(loadImage("explanationScreen1.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
   explanationScreen2 = new Screen(loadImage("explanationScreen2.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
   explanationScreen3 = new Screen(loadImage("explanationScreen3.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),5)});

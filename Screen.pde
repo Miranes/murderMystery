@@ -1,10 +1,12 @@
 class Screen {
   PImage backgroundImg;
+  PImage screenNameBckg;
   String screen;
   Arrow[] arrows;
   Item[] items;
   TextBox[] textboxes;
   Npc[] npcs = null;
+  int amountLetters;
 
   Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems, Npc[] pNpcs){
     backgroundImg = pBackground;
@@ -12,25 +14,23 @@ class Screen {
     arrows = pArrows;
     items = pItems;
     npcs = pNpcs;
+    screenNameBckg = loadImage("menuButton.png");
+    amountLetters = pScreen.length();
   }
   
-  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs){
-    backgroundImg = pBackground;
-    screen = pScreen;
-    arrows = pArrows;
-    npcs = pNpcs;
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs)
+  {
+    this(pBackground,pScreen,pArrows,null,pNpcs);
   }
   
-  Screen(PImage pBackground, String pScreen, Arrow[] pArrows){
-    backgroundImg = pBackground;
-    screen = pScreen;
-    arrows = pArrows;
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows)
+  {
+    this(pBackground,pScreen,pArrows,null,null);
   }
   
   Screen(PImage pBackground, String pScreen, TextBox[] pTextboxes)
   {
-    backgroundImg = pBackground;
-    screen = pScreen;
+    this(pBackground,pScreen,null,null,null);
     textboxes = pTextboxes;
   }
   
@@ -38,7 +38,8 @@ class Screen {
     background(backgroundImg);
     textSize(32);
     textAlign(CENTER,CENTER);
-    text(screen, width/2, 30); 
+    image(screenNameBckg, width/2-amountLetters*20/2,15,amountLetters*19,80);
+    text(screen, width/2, 50); 
     if(textboxes != null)
     {
       if(currentScreen == 0)

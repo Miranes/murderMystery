@@ -21,6 +21,11 @@ class TextBox
     this(pXPos,pYPos,pBoxWidth,pBoxHeight,pTextSize,pBoxText,null);
   }
   
+    TextBox(float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, PImage pBoxImg)
+  {
+    this(pXPos,pYPos,pBoxWidth,pBoxHeight,1,"",pBoxImg);
+  }
+  
   TextBox(float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxImg)
   {
     xPos = pXPos;
