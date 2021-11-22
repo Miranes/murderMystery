@@ -4,8 +4,8 @@ class Inventory
   PImage inventoryOpen;
   int inventoryWidth = 200;
   int inventoryHeight = 150;
-  float posX = 20;
-  float posY = height/2 - 50;
+  float posX = 20 +950;
+  float posY = height/2 - 50 -270;
   ArrayList<InventoryItem> itemsInInventory;
   TextBox[] buttons;
   boolean clicked;
