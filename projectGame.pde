@@ -45,13 +45,7 @@ Inventory inventory;
 //Game font
 PFont pixelFont;
 
-String[] fontList = PFont.list();
-
 int currentScreen;
-
-//Keeps track of which of the 6 different story versions the current one is
-int storyVersion;
-
 
 void setup() {
  
@@ -59,15 +53,8 @@ void setup() {
   pixelFont = createFont("pixelFont.ttf",72);
   textFont(pixelFont);
 
-  storyVersion = (int)random(1,7);
-  
   currentScreen = 0;
   mainCharacter = new Player();
-    
-
-  
-  items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
-  //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxImg
   
   float dialogueBoxX = width/2;
   float dialogueBoxY = height - 48;
@@ -85,7 +72,7 @@ void setup() {
   int buttonXOffset = 50;
   int buttonYOffset = 150;
   
-    //initializing the items
+  //initializing the items
   box = new Item(200,height/2,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX,20 + inventory.posY));
   rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("butler.png"),40 + inventory.posX,20 + inventory.posY));
   knife = new Item(width/2, 60, 50,50,new InventoryItem(loadImage("maid.png"),80 + inventory.posX,20 + inventory.posY));
@@ -97,13 +84,15 @@ void setup() {
   doorKey = new Item(width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),30 + inventory.posX,80 + inventory.posY));
   matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),30 + inventory.posX,80 + inventory.posY));
   
+  items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
+  
   //initializing all 11 screens
   startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
-  creditScreen = new Screen(loadImage("creditScreen.png"), "Credits", new Arrow[]{new Arrow(buttonXOffset,height/2,radians(180.0),0)});
-  explanationScreen1 = new Screen(loadImage("explanationScreen1.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
-  explanationScreen2 = new Screen(loadImage("explanationScreen2.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
-  explanationScreen3 = new Screen(loadImage("explanationScreen3.png"), "Explanation", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),5)});
-  respawnScreen = new Screen(loadImage("respawnScreen.png"), "Respawn", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),6)});
+  creditScreen = new Screen(loadImage("creditScreen.png"), "Credits", new TextBox[]{new TextBox(100,500,100,60,25,"MENU",loadImage("menuButton.png"))});
+  explanationScreen1 = new Screen(loadImage("explanationScreen1.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
+  explanationScreen2 = new Screen(loadImage("explanationScreen2.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
+  explanationScreen3 = new Screen(loadImage("explanationScreen3.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),5)});
+  respawnScreen = new Screen(loadImage("respawnScreen.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),6)});
   entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 8), new Arrow(width/2, 250, radians(-90.0), 7)},new Item[]{knife, fork, box, rope, phone, pen, pillow, pills},new Npc[]{butler});
   upstairHallScreen = new Screen(loadImage("upstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 6), new Arrow(width-50, height-buttonYOffset, radians(0), 11), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 13), new Arrow(width/2, 250, radians(-90.0), 10)});
   kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 9)},new Npc[]{maid});

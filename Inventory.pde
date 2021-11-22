@@ -4,15 +4,12 @@ class Inventory
   PImage inventoryOpen;
   int inventoryWidth = 200;
   int inventoryHeight = 150;
-  float posX = 20 +950;
-  float posY = height/2 - 50 -270;
+  float posX = 20 + 950;
+  float posY = height/2 -320;
   ArrayList<InventoryItem> itemsInInventory;
   TextBox[] buttons;
   boolean clicked;
   boolean open;
-  
-  //+950
-  //-250
   
   Inventory()
   {
@@ -20,7 +17,7 @@ class Inventory
     inventoryBag = loadImage("inventoryButton.png");
     inventoryOpen = loadImage("inventoryOpen.png");
     //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, PImage pBoxImg
-    buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-20,posY + 20, 20,20)};
+    buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-20,posY + 20, 20,20,22,"X")};
     buttons[0].rgbColor[1] = 255;
     buttons[0].rgbColor[2] = 255;
 
@@ -36,7 +33,6 @@ class Inventory
            open = false;    
            clicked = true;
          }
-         fill(255,150);
          image(inventoryOpen,posX,posY, inventoryWidth,inventoryHeight);
          fill(0);
          buttons[1].update();

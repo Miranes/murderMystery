@@ -24,14 +24,16 @@ class Arrow
   
  void update()
  {
+   if(currentScreen < 6)
+   {
      pushMatrix();
      translate(xPos,yPos);
      fill(255);
      rotate(rotation);
      image(arrow,-25,-25,50,50);
      popMatrix();
-    
-
+   }
+   
     if(hoverPlayer() && currentScreen >= 6)
     {
        currentScreen = transition; 
@@ -47,19 +49,20 @@ class Arrow
        {
         screens[i].arrows[0].clicked = true; 
        }
-       if(screens[currentScreen].screen == "Respawn") mainCharacter.isMoving = true;
+       if(currentScreen == 5) mainCharacter.isMoving = true;
        currentScreen = transition;
      }
  }
 
-//Check where the arrows start and finish to improve the hovers method (not working properly)
+
 boolean hoverPlayer()
 {
-  if(mainCharacter.posX >= xPos-25 &&
-     mainCharacter.posX <= xPos + arrowWidth-25 &&
-     mainCharacter.posY + mainCharacter.playerHeight/2 >= yPos-25 &&
-     mainCharacter.posY + mainCharacter.playerHeight/2 <= yPos + arrowHeight-25) return true;
-  return false;
+  if(mainCharacter.posX-40+mainCharacter.imageWidth-165 >= xPos &&
+     mainCharacter.posX <= xPos+arrowWidth &&
+     mainCharacter.posY+20 <= yPos+arrowHeight &&
+     mainCharacter.posY+mainCharacter.imageHeight-30 >= yPos ) return true;
+     
+     return false;
 }
 
 boolean hoverMouse()

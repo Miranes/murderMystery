@@ -5,8 +5,8 @@ class Screen {
   Arrow[] arrows;
   Item[] items;
   TextBox[] textboxes;
+  TextBox menu;
   Npc[] npcs = null;
-  int amountLetters;
 
   Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems, Npc[] pNpcs){
     backgroundImg = pBackground;
@@ -15,7 +15,8 @@ class Screen {
     items = pItems;
     npcs = pNpcs;
     screenNameBckg = loadImage("menuButton.png");
-    amountLetters = pScreen.length();
+    //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxIm
+    menu = new TextBox(100,50,100,60,25,"MENU",loadImage("menuButton.png"));
   }
   
   Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs)
@@ -30,18 +31,23 @@ class Screen {
   
   Screen(PImage pBackground, String pScreen, TextBox[] pTextboxes)
   {
+    
     this(pBackground,pScreen,null,null,null);
     textboxes = pTextboxes;
+  }
+  
+  Screen(PImage pBackground, String pScreen)
+  {
+    this(pBackground,pScreen,null,null,null);
   }
   
   void update() {
     background(backgroundImg);
     textSize(32);
     textAlign(CENTER,CENTER);
-    image(screenNameBckg, width/2-amountLetters*20/2,15,amountLetters*19,80);
+    image(screenNameBckg, width/2-122,15,240,80);
     text(screen, width/2, 50); 
-    if(textboxes != null)
-    {
+    
       if(currentScreen == 0)
       {
         for(int i=0; i<textboxes.length; i++)
@@ -71,7 +77,7 @@ class Screen {
             textboxes[i].update(); 
         }
       }
-    }
+    
     if(arrows != null)
     {
       for(int i=0; i<arrows.length; i++)
@@ -83,6 +89,14 @@ class Screen {
     if(items != null) for(int i=0; i<items.length;i++)items[i].update();
     
     if(currentScreen >= 6) inventory.update();
+    if(currentScreen > 0)
+    {
+      if(menu.hover() && mousePressed &&!menu.clicked)
+      {
+        currentScreen = 0;
+      }
+      menu.update();
+    }
   }
   
 }

@@ -67,8 +67,14 @@ class Player
     } 
     
     tint(255,(sin(millis()/300.0)+1.2)*255);
-    if(!left) image(images[currentImg],posX-playerWidth/2,posY,playerWidth,playerHeight);
-    else image(images[currentImg],-posX-playerWidth/2,posY,playerWidth,playerHeight);
+    if(!left)
+    {
+      image(images[currentImg],posX-playerWidth/2,posY,playerWidth,playerHeight);
+    }
+    else
+    {
+      image(images[currentImg],-posX-playerWidth/2,posY,playerWidth,playerHeight);
+    }
     tint(255,255);
     popMatrix();
     if(frameCount % 6 == 0) nextImg();
