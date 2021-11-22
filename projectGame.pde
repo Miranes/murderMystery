@@ -65,16 +65,16 @@ void setup() {
   mainCharacter = new Player();
     
   //initializing the items
-  box = new Item(200,height/2,50,50,new InventoryItem(loadImage("brother.png"),20,height/2-30));
-  rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("butler.png"),60,height/2-30));
-  knife = new Item(width/2, 60, 50,50,new InventoryItem(loadImage("maid.png"),100,height/2-30));
-  fork = new Item(width/2, height - 120,50,50,new InventoryItem(loadImage("wife.png"),140,height/2-30));
-  phone = new Item(width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),20,height/2+30));
-  pen = new Item(width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),60,height/2+30));
-  pillow = new Item(width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),100,height/2+30));
-  pills = new Item(width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),140,height/2+30));
-  doorKey = new Item(width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),50,50));
-  matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),50,50));
+  box = new Item(200,height/2,50,50,new InventoryItem(loadImage("brother.png"),20 +950,height/2-30 -270));
+  rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("butler.png"),60 +950,height/2-30 -270));
+  knife = new Item(width/2, 60, 50,50,new InventoryItem(loadImage("maid.png"),100 +950,height/2-30 -270));
+  fork = new Item(width/2, height - 120,50,50,new InventoryItem(loadImage("wife.png"),140 +950,height/2-30 -270));
+  phone = new Item(width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),20 +950,height/2+30-270));
+  pen = new Item(width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),60 +950,height/2+30 -270));
+  pillow = new Item(width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),100 +950,height/2+30 -270));
+  pills = new Item(width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),140 +950,height/2+30 -270));
+  doorKey = new Item(width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),50 +950,50 -270));
+  matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),50 +950,50 -270));
   
   items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
   //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxImg
@@ -106,7 +106,7 @@ void setup() {
   upstairHallScreen = new Screen(loadImage("upstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 6), new Arrow(width-50, height-buttonYOffset, radians(0), 11), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 13), new Arrow(width/2, 250, radians(-90.0), 10)});
   kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 9)},new Npc[]{maid});
   basementScreen = new Screen(loadImage("basement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 8)});
-  masterBedScreen = new Screen(loadImage("bedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2, height-50, radians(90.0), 7)},new Npc[]{wife});
+  masterBedScreen = new Screen(loadImage("bedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2+70, height-120, radians(120.0), 7)},new Npc[]{wife});
   atticHallScreen = new Screen(loadImage("atticHall.png"), "Attic Hall", new Arrow[]{new Arrow(width-buttonXOffset, buttonYOffset, radians(-45), 12), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 7)});
   atticScreen = new Screen(loadImage("attic.png"), "Attic", new Arrow[]{new Arrow(buttonXOffset, height-50, radians(125), 11)},new Npc[]{cat});
   hallScreen = new Screen(loadImage("leftHallway.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 7), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 14)});
