@@ -11,13 +11,16 @@ class Inventory
   boolean clicked;
   boolean open;
   
+  //+950
+  //-250
+  
   Inventory()
   {
     itemsInInventory = new ArrayList();
     inventoryBag = loadImage("inventoryButton.png");
     inventoryOpen = loadImage("inventoryOpen.png");
     //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, PImage pBoxImg
-    buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(inventoryWidth,posY + 20, 20,20)};
+    buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-20,posY + 20, 20,20)};
     buttons[0].rgbColor[1] = 255;
     buttons[0].rgbColor[2] = 255;
 
