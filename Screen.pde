@@ -88,12 +88,67 @@ class Screen {
     if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
     if(items != null) for(int i=0; i<items.length;i++)items[i].update();
     
-    if(currentScreen >= 6) inventory.update();
+    if(currentScreen >= 6)
+    {
+      if(!inventory.open)
+      {
+        if(inventory.buttons[0].hover())
+        {
+          if(inventory.buttons[0].boxWidth != 110)
+          {
+            inventory.buttons[0].boxWidth = 110;
+            inventory.buttons[0].boxHeight = 94;
+          }
+        }
+        else
+        {
+          inventory.buttons[0].boxWidth = 100;
+          inventory.buttons[0].boxHeight = 84;
+        }
+      }
+      else
+      {
+        if(inventory.buttons[1].hover())
+        {
+          if(inventory.buttons[1].boxWidth != 25)
+          {
+            inventory.buttons[1].boxWidth = 25;
+            inventory.buttons[1].boxHeight = 25;
+            inventory.buttons[1].textSize = 27;
+          }
+        }
+        else
+        {
+         if(inventory.buttons[1].boxWidth != 20)
+         {
+           inventory.buttons[1].boxWidth = 20;
+           inventory.buttons[1].boxHeight = 20;
+           inventory.buttons[1].textSize = 22;
+         }
+        }
+      }
+      inventory.update();
+    }
     if(currentScreen > 0)
     {
-      if(menu.hover() && mousePressed &&!menu.clicked)
+      if(menu.hover())
       {
-        currentScreen = 0;
+        if(menu.boxWidth != 110)
+        {
+          menu.boxWidth = 110;
+          menu.boxHeight = 70;
+          menu.textSize = 30;
+        }
+        if(mousePressed &&!menu.clicked) currentScreen = 0;
+      }
+      else
+      {
+       if(menu.boxWidth != 100)
+       {
+         menu.boxWidth = 100;
+         menu.boxHeight = 60;
+         menu.textSize = 25;
+       }
       }
       menu.update();
     }

@@ -17,26 +17,27 @@ class Item
     itemWidth = pItemWidth;
     itemHeight = pItemHeight;
     itemInv = pItemInv;
-
   }
   
   void update()
   {
     
     if(hover()&& !inventory.itemsInInventory.contains(itemInv))inventory.itemsInInventory.add(itemInv);
-    else rgbItem = 255;
-    fill(rgbItem);
+    rect(xPos,yPos,itemWidth,itemHeight);
     image(itemImg,xPos,yPos,itemWidth,itemHeight);
-    fill(255);
+
     
   }
   
 boolean hover()
 {
-  if(mainCharacter.posX >= xPos &&
+  if(mainCharacter.posX-40+mainCharacter.imageWidth-165 >= xPos &&
+     mainCharacter.posX <= xPos+itemWidth+20 &&
+     mainCharacter.posY+20 <= yPos+itemHeight &&
+     mainCharacter.posY+mainCharacter.imageHeight-30 >= yPos )/*mainCharacter.posX >= xPos &&
      mainCharacter.posX <= xPos + itemWidth &&
      mainCharacter.posY + mainCharacter.imageHeight/2 >= yPos &&
-     mainCharacter.posY + mainCharacter.imageHeight/2 <= yPos + itemHeight)
+     mainCharacter.posY + mainCharacter.imageHeight/2 <= yPos + itemHeight)*/
      {
        itemFound = true; 
        return true;
