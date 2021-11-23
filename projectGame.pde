@@ -73,14 +73,14 @@ void setup() {
   int buttonYOffset = 150;
   
   //initializing the items
-  butlerEntree = new Item(loadImage("emptyEntree.png"),200,height/2,50,50,new InventoryItem(loadImage("writtenEntree.png"),inventory.posX,20 + inventory.posY));
-  maidEntree = new Item(loadImage("emptyEntree.png"),width - 200, height - 60,50,50,new InventoryItem(loadImage("writtenEntree.png"),40 + inventory.posX,20 + inventory.posY));
-  brotherEntree = new Item(loadImage("emptyEntree.png"),width/2, 60, 50,50,new InventoryItem(loadImage("writtenEntree.png"),80 + inventory.posX,20 + inventory.posY));
-  wifeEntree = new Item(loadImage("emptyEntree.png"),width/2, height - 120,50,50,new InventoryItem(loadImage("writtenEntree.png"),120 + inventory.posX,20 + inventory.posY));
-  phone = new Item(loadImage("brother.png"),width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX,80 + inventory.posY));
-  pen = new Item(loadImage("butler.png"),width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),40 + inventory.posX,80 + inventory.posY));
-  pillow = new Item(loadImage("maid.png"),width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),80 + inventory.posX,80 + inventory.posY));
-  pills = new Item(loadImage("wife.png"),width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),120 + inventory.posX,80 + inventory.posY));
+  butlerEntree = new Item(loadImage("emptyEntree.png"),200,height/2,50,50,new InventoryItem(loadImage("writtenEntree.png"),inventory.posX+30,20 + inventory.posY));
+  maidEntree = new Item(loadImage("emptyEntree.png"),width - 200, height - 60,50,50,new InventoryItem(loadImage("writtenEntree.png"),70 + inventory.posX,20 + inventory.posY));
+  brotherEntree = new Item(loadImage("emptyEntree.png"),width/2, 60, 50,50,new InventoryItem(loadImage("writtenEntree.png"),110 + inventory.posX,20 + inventory.posY));
+  wifeEntree = new Item(loadImage("emptyEntree.png"),width/2, height - 120,50,50,new InventoryItem(loadImage("writtenEntree.png"),150 + inventory.posX,20 + inventory.posY));
+  phone = new Item(loadImage("brother.png"),width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX+30,80 + inventory.posY));
+  pen = new Item(loadImage("butler.png"),width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),70 + inventory.posX,80 + inventory.posY));
+  pillow = new Item(loadImage("maid.png"),width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),110 + inventory.posX,80 + inventory.posY));
+  pills = new Item(loadImage("wife.png"),width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),150 + inventory.posX,80 + inventory.posY));
   doorKey = new Item(loadImage("brother.png"),width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),30 + inventory.posX,80 + inventory.posY));
   matches = new Item(loadImage("butler.png"),width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),30 + inventory.posX,80 + inventory.posY));
   
