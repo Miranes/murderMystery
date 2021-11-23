@@ -22,12 +22,12 @@ Item butlerEntree;
 Item maidEntree;
 Item brotherEntree;
 Item wifeEntree;
-Item phone;
-Item pen;
-Item pillow;
-Item pills;
-Item doorKey;
-Item matches;
+Item driedFlower;
+Item morphine;
+Item screwDriver;
+Item keyAttic;
+Item keyBasement;
+Item letter;
 
 //declaring NPCs
 Npc wife;
@@ -73,18 +73,18 @@ void setup() {
   int buttonYOffset = 150;
   
   //initializing the items
-  butlerEntree = new Item(loadImage("emptyEntree.png"),200,height/2,50,50,new InventoryItem(loadImage("writtenEntree.png"),inventory.posX+30,20 + inventory.posY));
-  maidEntree = new Item(loadImage("emptyEntree.png"),width - 200, height - 60,50,50,new InventoryItem(loadImage("writtenEntree.png"),70 + inventory.posX,20 + inventory.posY));
-  brotherEntree = new Item(loadImage("emptyEntree.png"),width/2, 60, 50,50,new InventoryItem(loadImage("writtenEntree.png"),110 + inventory.posX,20 + inventory.posY));
-  wifeEntree = new Item(loadImage("emptyEntree.png"),width/2, height - 120,50,50,new InventoryItem(loadImage("writtenEntree.png"),150 + inventory.posX,20 + inventory.posY));
-  phone = new Item(loadImage("brother.png"),width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX+30,80 + inventory.posY));
-  pen = new Item(loadImage("butler.png"),width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),70 + inventory.posX,80 + inventory.posY));
-  pillow = new Item(loadImage("maid.png"),width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),110 + inventory.posX,80 + inventory.posY));
-  pills = new Item(loadImage("wife.png"),width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),150 + inventory.posX,80 + inventory.posY));
-  doorKey = new Item(loadImage("brother.png"),width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),30 + inventory.posX,80 + inventory.posY));
-  matches = new Item(loadImage("butler.png"),width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),30 + inventory.posX,80 + inventory.posY));
+  butlerEntree = new Item(loadImage("emptyEntree.png"),200,height/2,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),inventory.posX+30,20 + inventory.posY,true,"butlerEntree"));
+  maidEntree = new Item(loadImage("emptyEntree.png"),width - 200, height - 60,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),70 + inventory.posX,20 + inventory.posY,true,"maidEntree"));
+  brotherEntree = new Item(loadImage("emptyEntree.png"),width/2, 60, 50,50,true,new InventoryItem(loadImage("writtenEntree.png"),110 + inventory.posX,20 + inventory.posY,true,"brotherEntree"));
+  wifeEntree = new Item(loadImage("emptyEntree.png"),width/2, height - 120,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),150 + inventory.posX,20 + inventory.posY,true,"wifeEntree"));
+  driedFlower = new Item(loadImage("driedFlower.png"),width/2, height - 180,50,50,false,new InventoryItem(loadImage("driedFlower.png"),inventory.posX+30,80 + inventory.posY,false,"driedFlower"));
+  morphine = new Item(loadImage("morphine.png"),width/2, height - 240,50,50,false,new InventoryItem(loadImage("morphine.png"),70 + inventory.posX,80 + inventory.posY,false,"morphine"));
+  screwDriver = new Item(loadImage("screwDriver.png"),width/2, height - 300,50,50,false,new InventoryItem(loadImage("screwDriver.png"),110 + inventory.posX,80 + inventory.posY,false,"screwDriver"));
+  keyAttic = new Item(loadImage("keyAttic.png"),width/2, height - 360,50,50,false,new InventoryItem(loadImage("keyAttic.png"),150 + inventory.posX,80 + inventory.posY,false,"keyAttic"));
+  keyBasement = new Item(loadImage("keyBasement.png"),width/2, height - 420,50,50,false,new InventoryItem(loadImage("keyBasement.png"),30 + inventory.posX,80 + inventory.posY,false,"keyBasement"));
+  letter = new Item(loadImage("letter.png"),width/2, height - 480,50,50,false,new InventoryItem(loadImage("letter.png"),30 + inventory.posX,80 + inventory.posY,false,"letter"));
   
-  items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, phone, pen, pillow, pills, doorKey, matches};
+  items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
   
   //initializing all 11 screens
   startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
@@ -93,9 +93,9 @@ void setup() {
   explanationScreen2 = new Screen(loadImage("explanationScreen2.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
   explanationScreen3 = new Screen(loadImage("explanationScreen3.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),5)});
   respawnScreen = new Screen(loadImage("respawnScreen.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),6)});
-  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 8), new Arrow(width/2, 250, radians(-90.0), 7)},new Item[]{butlerEntree, wifeEntree, maidEntree, brotherEntree, phone, pen, pillow, pills},new Npc[]{butler});
+  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 8), new Arrow(width/2, 250, radians(-90.0), 7)},new Item[]{butlerEntree, wifeEntree, maidEntree, brotherEntree, driedFlower, morphine, screwDriver},new Npc[]{butler});
   upstairHallScreen = new Screen(loadImage("upstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 6), new Arrow(width-50, height-buttonYOffset, radians(0), 11), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 13), new Arrow(width/2, 250, radians(-90.0), 10)});
-  kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 9)},new Npc[]{maid});
+  kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 9)},new Item[]{keyBasement,keyAttic,letter},new Npc[]{maid});
   basementScreen = new Screen(loadImage("basement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 8)});
   masterBedScreen = new Screen(loadImage("bedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2+70, height-120, radians(120.0), 7)},new Npc[]{wife});
   atticHallScreen = new Screen(loadImage("atticHall.png"), "Attic Hall", new Arrow[]{new Arrow(width-buttonXOffset, buttonYOffset, radians(-45), 12), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 7)});
@@ -118,20 +118,48 @@ void draw()
      } 
   }
   
-  if(currentScreen >= 6) mainCharacter.update();
+   if(currentScreen >= 6) mainCharacter.update();
   
 }
 
 void mouseReleased()
 {
-  try
+  //arrows in the cutscenes and credit screen
+  if(currentScreen > 0 && currentScreen < 6)
   {
-    for(int i=0; i<screens[currentScreen].arrows.length ; i++)
+      try
+      {
+        for(int i=0; i<screens[currentScreen].arrows.length ; i++)
+        {
+          screens[currentScreen].arrows[i].clicked = false;
+        }
+      }
+      catch(Exception e){}
+  }
+  
+  //All UI in screens where the player can interact with objects
+  if(currentScreen > 5)
+  {
+    mainCharacter.isMoving = false; 
+    if(inventory.clicked) inventory.clicked = false;
+    
+    //diary entrees
+    for(int i=0; i<inventory.diariesInInventory.size(); i++)
     {
-      screens[currentScreen].arrows[i].clicked = false;
+     if(inventory.diariesInInventory.get(i).clicked)
+     {
+       inventory.diariesInInventory.get(i).clicked = false;
+     }
+    }
+    
+    //buttons to close diary entrees
+    for(int i=0; i<inventory.diariesInInventory.size(); i++)
+    {
+     if(inventory.diariesInInventory.get(i).closeButton.clicked)
+     {
+       inventory.diariesInInventory.get(i).closeButton.clicked = false;
+     }
+      
     }
   }
-  catch(Exception e){}
-  mainCharacter.isMoving = false; 
-  if(inventory.clicked) inventory.clicked = false;
 }

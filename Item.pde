@@ -5,44 +5,47 @@ class Item
   float yPos;
   int itemWidth;
   int itemHeight;
-  int rgbItem = 255;
   boolean itemFound;
+  boolean diary;
   InventoryItem itemInv;
   
-  Item(PImage pItemImg ,float pXPos, float pYPos, int pItemWidth, int pItemHeight, InventoryItem pItemInv)
+  
+  Item(PImage pItemImg ,float pXPos, float pYPos, int pItemWidth, int pItemHeight, boolean pDiary,  InventoryItem pItemInv)
   {
     itemImg = pItemImg;
     xPos = pXPos;
     yPos = pYPos;
     itemWidth = pItemWidth;
     itemHeight = pItemHeight;
+    diary = pDiary;
     itemInv = pItemInv;
   }
   
   void update()
   {
-    
-    if(hover()&& !inventory.itemsInInventory.contains(itemInv))inventory.itemsInInventory.add(itemInv);
-    rect(xPos,yPos,itemWidth,itemHeight);
+    if(diary)
+    {
+      if(hover() && !inventory.diariesInInventory.contains(itemInv))inventory.diariesInInventory.add(itemInv); 
+    }
+    else
+    {
+      if(hover() && !inventory.itemsInInventory.contains(itemInv))inventory.itemsInInventory.add(itemInv);
+    }
     image(itemImg,xPos,yPos,itemWidth,itemHeight);
-
     
   }
   
-boolean hover()
-{
-  if(mainCharacter.posX-40+mainCharacter.imageWidth-165 >= xPos &&
-     mainCharacter.posX <= xPos+itemWidth+20 &&
-     mainCharacter.posY+20 <= yPos+itemHeight &&
-     mainCharacter.posY+mainCharacter.imageHeight-30 >= yPos )/*mainCharacter.posX >= xPos &&
-     mainCharacter.posX <= xPos + itemWidth &&
-     mainCharacter.posY + mainCharacter.imageHeight/2 >= yPos &&
-     mainCharacter.posY + mainCharacter.imageHeight/2 <= yPos + itemHeight)*/
-     {
-       itemFound = true; 
-       return true;
-     }
-  return false;
-}
+  boolean hover()
+  {
+    if(mainCharacter.posX-40+mainCharacter.imageWidth-165 >= xPos &&
+       mainCharacter.posX <= xPos+itemWidth+20 &&
+       mainCharacter.posY+20 <= yPos+itemHeight &&
+       mainCharacter.posY+mainCharacter.imageHeight-30 >= yPos )
+       {
+         itemFound = true; 
+         return true;
+       }
+    return false;
+  }
 
 }

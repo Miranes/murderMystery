@@ -90,6 +90,7 @@ class Screen {
     
     if(currentScreen >= 6)
     {
+        
       if(!inventory.open)
       {
         if(inventory.buttons[0].hover())

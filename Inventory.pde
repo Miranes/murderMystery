@@ -7,24 +7,26 @@ class Inventory
   float posX = 20 + 880;
   float posY = height/2 -320;
   ArrayList<InventoryItem> itemsInInventory;
+  ArrayList<InventoryItem> diariesInInventory;
   TextBox[] buttons;
   boolean clicked;
   boolean open;
+  boolean diaryIsOpen;
   
   Inventory()
   {
     itemsInInventory = new ArrayList();
+    diariesInInventory = new ArrayList();
     inventoryBag = loadImage("inventoryButton.png");
     inventoryOpen = loadImage("inventoryOpen.png");
     buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-20,posY + 20, 20,20,22,"X")};
-    buttons[0].rgbColor[1] = 255;
-    buttons[0].rgbColor[2] = 255;
-
+    //buttons[0].rgbColor[1] = 255;
+    //buttons[0].rgbColor[2] = 255;
   }
   
   void update()
   {
-     
+     overInventoryBox();
      if(open)
      {
          if(buttons[1].hover() && mousePressed && !clicked)
@@ -44,13 +46,33 @@ class Inventory
              
            }
          }
+         if(diariesInInventory.size() > 0)
+         {
+           for(int i=diariesInInventory.size()-1; i >= 0; i--)
+           {
+             diariesInInventory.get(i).update();
+           }
+         }
      }
      else
      {
         buttons[0].update();
-        if(buttons[0].hover() && mousePressed && !clicked){
-          open = true;
-          clicked = true; 
+        for(int i=diariesInInventory.size()-1; i >= 0; i--)
+        {
+          if(diariesInInventory.get(i).diaryOpen)diariesInInventory.get(i).update();
+        }
+        if(buttons[0].hover() && mousePressed && !clicked)
+        {
+            for(int i=diariesInInventory.size()-1; i >= 0; i--)
+            {
+              if(diariesInInventory.get(i).identifier == "wifeEntree")
+              {
+                diariesInInventory.get(i).clicked = true;
+                break; 
+              }
+            }
+            open = true;
+            clicked = true; 
         }
      }
   }
@@ -58,6 +80,15 @@ class Inventory
   boolean overButton()
   {
     if(buttons[0].hover() || buttons[1].hover()) return true;
+    return false;
+  }
+  
+  boolean overInventoryBox()
+  {
+    if(mouseX >= posX &&
+       mouseX <= posX+inventoryWidth &&
+       mouseY >= posY &&
+       mouseY <= posY+inventoryHeight && open) return true;
     return false;
   }
 }

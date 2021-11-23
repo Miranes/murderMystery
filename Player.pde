@@ -41,7 +41,7 @@ class Player
   
   void update() { 
 
-    if (mousePressed && !isMoving && !inventory.overButton()) 
+    if (mousePressed && !isMoving && !inventory.overButton() && !inventory.overInventoryBox()) 
     {
       translateX = mouseX - playerWidth/2 + 100;
       translateY = mouseY - playerHeight/2;
@@ -87,5 +87,4 @@ class Player
     currentImg++;
   }
   
-
 }
