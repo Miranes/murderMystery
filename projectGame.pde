@@ -18,10 +18,10 @@ Screen livingRoomScreen;
 
 //declaring items 
 Item[] items;
-Item box;
-Item rope;
-Item knife;
-Item fork;
+Item butlerEntree;
+Item maidEntree;
+Item brotherEntree;
+Item wifeEntree;
 Item phone;
 Item pen;
 Item pillow;
@@ -73,18 +73,18 @@ void setup() {
   int buttonYOffset = 150;
   
   //initializing the items
-  box = new Item(200,height/2,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX,20 + inventory.posY));
-  rope = new Item(width - 200, height - 60,50,50,new InventoryItem(loadImage("butler.png"),40 + inventory.posX,20 + inventory.posY));
-  knife = new Item(width/2, 60, 50,50,new InventoryItem(loadImage("maid.png"),80 + inventory.posX,20 + inventory.posY));
-  fork = new Item(width/2, height - 120,50,50,new InventoryItem(loadImage("wife.png"),120 + inventory.posX,20 + inventory.posY));
-  phone = new Item(width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX,80 + inventory.posY));
-  pen = new Item(width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),40 + inventory.posX,80 + inventory.posY));
-  pillow = new Item(width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),80 + inventory.posX,80 + inventory.posY));
-  pills = new Item(width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),120 + inventory.posX,80 + inventory.posY));
-  doorKey = new Item(width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),30 + inventory.posX,80 + inventory.posY));
-  matches = new Item(width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),30 + inventory.posX,80 + inventory.posY));
+  butlerEntree = new Item(loadImage("emptyEntree.png"),200,height/2,50,50,new InventoryItem(loadImage("writtenEntree.png"),inventory.posX,20 + inventory.posY));
+  maidEntree = new Item(loadImage("emptyEntree.png"),width - 200, height - 60,50,50,new InventoryItem(loadImage("writtenEntree.png"),40 + inventory.posX,20 + inventory.posY));
+  brotherEntree = new Item(loadImage("emptyEntree.png"),width/2, 60, 50,50,new InventoryItem(loadImage("writtenEntree.png"),80 + inventory.posX,20 + inventory.posY));
+  wifeEntree = new Item(loadImage("emptyEntree.png"),width/2, height - 120,50,50,new InventoryItem(loadImage("writtenEntree.png"),120 + inventory.posX,20 + inventory.posY));
+  phone = new Item(loadImage("brother.png"),width/2, height - 180,50,50,new InventoryItem(loadImage("brother.png"),inventory.posX,80 + inventory.posY));
+  pen = new Item(loadImage("butler.png"),width/2, height - 240,50,50,new InventoryItem(loadImage("butler.png"),40 + inventory.posX,80 + inventory.posY));
+  pillow = new Item(loadImage("maid.png"),width/2, height - 300,50,50,new InventoryItem(loadImage("maid.png"),80 + inventory.posX,80 + inventory.posY));
+  pills = new Item(loadImage("wife.png"),width/2, height - 360,50,50,new InventoryItem(loadImage("wife.png"),120 + inventory.posX,80 + inventory.posY));
+  doorKey = new Item(loadImage("brother.png"),width/2, height - 420,50,50,new InventoryItem(loadImage("brother.png"),30 + inventory.posX,80 + inventory.posY));
+  matches = new Item(loadImage("butler.png"),width/2, height - 480,50,50,new InventoryItem(loadImage("butler.png"),30 + inventory.posX,80 + inventory.posY));
   
-  items = new Item[]{box, rope, knife, fork, phone, pen, pillow, pills, doorKey, matches};
+  items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, phone, pen, pillow, pills, doorKey, matches};
   
   //initializing all 11 screens
   startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
@@ -93,7 +93,7 @@ void setup() {
   explanationScreen2 = new Screen(loadImage("explanationScreen2.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
   explanationScreen3 = new Screen(loadImage("explanationScreen3.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),5)});
   respawnScreen = new Screen(loadImage("respawnScreen.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),6)});
-  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 8), new Arrow(width/2, 250, radians(-90.0), 7)},new Item[]{knife, fork, box, rope, phone, pen, pillow, pills},new Npc[]{butler});
+  entranceScreen = new Screen(loadImage("entrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 8), new Arrow(width/2, 250, radians(-90.0), 7)},new Item[]{butlerEntree, wifeEntree, maidEntree, brotherEntree, phone, pen, pillow, pills},new Npc[]{butler});
   upstairHallScreen = new Screen(loadImage("upstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 6), new Arrow(width-50, height-buttonYOffset, radians(0), 11), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 13), new Arrow(width/2, 250, radians(-90.0), 10)});
   kitchenScreen = new Screen(loadImage("kitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 9)},new Npc[]{maid});
   basementScreen = new Screen(loadImage("basement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 8)});

@@ -1,5 +1,6 @@
 class Item
 {
+  PImage itemImg;
   float xPos;
   float yPos;
   int itemWidth;
@@ -8,8 +9,9 @@ class Item
   boolean itemFound;
   InventoryItem itemInv;
   
-  Item(float pXPos, float pYPos, int pItemWidth, int pItemHeight, InventoryItem pItemInv)
+  Item(PImage pItemImg ,float pXPos, float pYPos, int pItemWidth, int pItemHeight, InventoryItem pItemInv)
   {
+    itemImg = pItemImg;
     xPos = pXPos;
     yPos = pYPos;
     itemWidth = pItemWidth;
@@ -24,7 +26,7 @@ class Item
     if(hover()&& !inventory.itemsInInventory.contains(itemInv))inventory.itemsInInventory.add(itemInv);
     else rgbItem = 255;
     fill(rgbItem);
-    rect(xPos,yPos,itemWidth,itemHeight);
+    image(itemImg,xPos,yPos,itemWidth,itemHeight);
     fill(255);
     
   }

@@ -2,9 +2,9 @@ class Inventory
 {
   PImage inventoryBag;
   PImage inventoryOpen;
-  int inventoryWidth = 200;
+  int inventoryWidth = 250;
   int inventoryHeight = 150;
-  float posX = 20 + 950;
+  float posX = 20 + 880;
   float posY = height/2 -320;
   ArrayList<InventoryItem> itemsInInventory;
   TextBox[] buttons;
@@ -16,7 +16,6 @@ class Inventory
     itemsInInventory = new ArrayList();
     inventoryBag = loadImage("inventoryButton.png");
     inventoryOpen = loadImage("inventoryOpen.png");
-    //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, PImage pBoxImg
     buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-20,posY + 20, 20,20,22,"X")};
     buttons[0].rgbColor[1] = 255;
     buttons[0].rgbColor[2] = 255;
