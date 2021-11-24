@@ -51,7 +51,8 @@ PImage cursorImg;
 
 void setup() {
 
-  fullScreen();
+  size(1920,1080);
+  //fullScreen();
   
   //Font
   pixelFont = createFont("pixelFont.ttf",72);
@@ -65,15 +66,15 @@ void setup() {
   mainCharacter = new Player();
   
   float dialogueBoxX = width/2;
-  float dialogueBoxY = height - 48;
+  float dialogueBoxY = height - 80;
   PImage dialogueBoxImg = loadImage("dialogueBox.png");
   
   //initializing npcs
-  wife = new Npc(width/2-38,height/2+28,200,200,"wife",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("wifeIdle.png"),6,1));
-  brother = new Npc(width/2+100,height/2-2,230,230,"brother",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("brotherIdle.png"),5,1));
-  butler = new Npc(width/2-98,height/2-2,230,230,"butler",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("butlerIdle.png"),4,1));
-  maid = new Npc(width/2-56,height/2+28,200,200,"maid",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("maidIdle.png"),4,1));
-  cat = new Npc(width/2,height/2,100,100,"cat",new TextBox(dialogueBoxX,dialogueBoxY,900,150,20,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("butlerIdle.png"),4,1));
+  wife = new Npc(width/2-38,height/2+60,300,300,"wife",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/wifeIdle.png"),6,1));
+  brother = new Npc(width/2+100,height/2+30,330,330,"brother",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/brotherIdle.png"),5,1));
+  butler = new Npc(width/2-98,height/2+30,330,330,"butler",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/butlerIdle.png"),4,1));
+  maid = new Npc(width/2-56,height/2+60,300,300,"maid",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/maidIdle.png"),4,1));
+  cat = new Npc(320,height/2-280,250,250,"cat",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/catIdle.png"),6,1));
   
   //initializing inventory
   inventory = new Inventory();
@@ -81,38 +82,49 @@ void setup() {
   int buttonXOffset = 50;
   int buttonYOffset = 150;
   
+  //item temp imgs variables
+  PImage emptyEntree = loadImage("items/emptyEntree.png");
+  PImage ButlerEntree = loadImage("items/butlerEntree.png");
+  PImage MaidEntree = loadImage("items/maidEntree.png");
+  PImage BrotherEntree = loadImage("items/brotherEntree.png");
+  PImage WifeEntree = loadImage("items/wifeEntree.png");
+  PImage DriedFlower = loadImage("items/driedFlower.png");
+  PImage Morphine = loadImage("items/morphine.png");
+  PImage ScrewDriver = loadImage("items/screwDriver.png");
+  PImage KeyAttic = loadImage("items/keyAttic.png") ;
+  PImage KeyBasement = loadImage("items/keyBasement.png");
+  PImage Letter = loadImage("items/letter.png");
+  
   //initializing the items
-  
-  butlerEntree = new Item(loadImage("emptyEntree.png"),200,height/2,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),inventory.posX+30,20 + inventory.posY,true,"butlerEntree"));
-  maidEntree = new Item(loadImage("emptyEntree.png"),width - 200, height - 60,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),70 + inventory.posX,20 + inventory.posY,true,"maidEntree"));
-  brotherEntree = new Item(loadImage("emptyEntree.png"),width/2, 60, 50,50,true,new InventoryItem(loadImage("writtenEntree.png"),110 + inventory.posX,20 + inventory.posY,true,"brotherEntree"));
-  wifeEntree = new Item(loadImage("emptyEntree.png"),width/2, height - 120,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),150 + inventory.posX,20 + inventory.posY,true,"wifeEntree"));
-  driedFlower = new Item(loadImage("driedFlower.png"),width/2, height - 180,50,50,false,new InventoryItem(loadImage("driedFlower.png"),inventory.posX+30,80 + inventory.posY,false,"driedFlower"));
-  morphine = new Item(loadImage("morphine.png"),width/2, height - 240,50,50,false,new InventoryItem(loadImage("morphine.png"),70 + inventory.posX,80 + inventory.posY,false,"morphine"));
-  screwDriver = new Item(loadImage("screwDriver.png"),width/2, height - 300,50,50,false,new InventoryItem(loadImage("screwDriver.png"),110 + inventory.posX,80 + inventory.posY,false,"screwDriver"));
-  keyAttic = new Item(loadImage("keyAttic.png"),width/2, height - 360,50,50,false,new InventoryItem(loadImage("keyAttic.png"),150 + inventory.posX,80 + inventory.posY,false,"keyAttic"));
-  keyBasement = new Item(loadImage("keyBasement.png"),width/2, height - 420,50,50,false,new InventoryItem(loadImage("keyBasement.png"),30 + inventory.posX,80 + inventory.posY,false,"keyBasement"));
-  letter = new Item(loadImage("letter.png"),width/2, height - 480,50,50,false,new InventoryItem(loadImage("letter.png"),30 + inventory.posX,80 + inventory.posY,false,"letter"));
-  
+  butlerEntree = new Item(emptyEntree,width-130,height/2+180,50,50,true,new InventoryItem(ButlerEntree,inventory.posX+30,60 + inventory.posY,true,"butlerEntree"));
+  maidEntree = new Item(emptyEntree,width/2 + 350, height/2-30,50,50,true,new InventoryItem(MaidEntree,100 + inventory.posX,60 + inventory.posY,true,"maidEntree"));
+  brotherEntree = new Item(emptyEntree,width/2-350, height-300, 50,50,true,new InventoryItem(BrotherEntree,170 + inventory.posX,60 + inventory.posY,true,"brotherEntree"));
+  wifeEntree = new Item(emptyEntree,width-250, height-220,50,50,true,new InventoryItem(WifeEntree,240 + inventory.posX,60 + inventory.posY,true,"wifeEntree"));
+  driedFlower = new Item(DriedFlower,width-280, height - 220,50,50,false,new InventoryItem(DriedFlower,inventory.posX+310,60 + inventory.posY,false,"driedFlower"));
+  morphine = new Item(Morphine,width/2+270, height - 345,50,50,false,new InventoryItem(Morphine,30 + inventory.posX,150 + inventory.posY,false,"morphine"));
+  screwDriver = new Item(ScrewDriver,width-80,height/2+100,50,50,false,new InventoryItem(ScrewDriver,100 + inventory.posX,150 + inventory.posY,false,"screwDriver"));
+  keyAttic = new Item(KeyAttic,500, height/2+310,50,50,false,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
+  keyBasement = new Item(KeyBasement,width/2+500, height/2+150,50,50,false,new InventoryItem(KeyBasement,240 + inventory.posX,150 + inventory.posY,false,"keyBasement"));
+  letter = new Item(Letter,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
   
   items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
   
   //initializing all 11 screens
-  startScreen = new Screen(loadImage("fullEntrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
-  creditScreen = new Screen(loadImage("fullEntrance.png"), "Credits", new TextBox[]{new TextBox(100,500,100,60,25,"MENU",loadImage("menuButton.png"))});
-  explanationScreen1 = new Screen(loadImage("fullEntrance.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),3)});
-  explanationScreen2 = new Screen(loadImage("fullEntrance.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),4)});
-  explanationScreen3 = new Screen(loadImage("fullEntrance.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),5)});
-  respawnScreen = new Screen(loadImage("fullEntrance.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,radians(0),6)});
-  entranceScreen = new Screen(loadImage("fullEntrance.png"), "Entrance", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 8), new Arrow(width/2, 250, radians(-90.0), 7)},new Npc[]{butler});
-  upstairHallScreen = new Screen(loadImage("fullUpstairHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2, height-40, radians(90.0), 6), new Arrow(width-50, height-buttonYOffset, radians(0), 11), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 13), new Arrow(width/2, 250, radians(-90.0), 10)});
-  kitchenScreen = new Screen(loadImage("fullKitchen.png"), "Kitchen", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 6), new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 9)},new Item[]{keyBasement},new Npc[]{maid});
-  basementScreen = new Screen(loadImage("fullBasement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 8)});
-  masterBedScreen = new Screen(loadImage("fullBedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(width/2+70, height-120, radians(120.0), 7)},new Item[]{letter,morphine,wifeEntree},new Npc[]{wife});
-  atticHallScreen = new Screen(loadImage("fullAtticHall.png"), "Attic Hall", new Arrow[]{new Arrow(width-buttonXOffset, buttonYOffset, radians(-45), 12), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 7)});
-  atticScreen = new Screen(loadImage("fullAttic.png"), "Attic", new Arrow[]{new Arrow(buttonXOffset, height-50, radians(125), 11)},new Npc[]{cat});
-  hallScreen = new Screen(loadImage("fullLeftHall.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 7), new Arrow(buttonXOffset, height-buttonYOffset, radians(180), 14)}, new Item[]{keyAttic});
-  livingRoomScreen = new Screen(loadImage("fullLivingRoom.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset, height-buttonYOffset, radians(0), 13)},new Npc[]{brother});
+  startScreen = new Screen(loadImage("backgrounds/mainMenu.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))},false);
+  creditScreen = new Screen(loadImage("backgrounds/credits.png"), "Credits", new TextBox[]{new TextBox(100,500,100,60,25,"MENU",loadImage("menuButton.png"))},false);
+  explanationScreen1 = new Screen(loadImage("backgrounds/explanation1.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,3)},false);
+  explanationScreen2 = new Screen(loadImage("backgrounds/explanation2.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,4)},false);
+  explanationScreen3 = new Screen(loadImage("backgrounds/npcLeaving.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,5)},false);
+  respawnScreen = new Screen(loadImage("backgrounds/respawnScreen.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,6)},false);
+  entranceScreen = new Screen(loadImage("backgrounds/entrance.png"), "Entrance", new Arrow[]{new Arrow(width-325, height/2,200,350, 8), new Arrow(width/2-100, 350,200,50,7)},new Npc[]{butler},false);
+  upstairHallScreen = new Screen(loadImage("backgrounds/upstairsHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2-200, height-190,400,25, 6), new Arrow(width-50,150,25,750,11), new Arrow(buttonXOffset,150,25,750,13), new Arrow(width/2, 250,50,50,10)},false);
+  kitchenScreen = new Screen(loadImage("backgrounds/kitchen.png"), "Kitchen", new Arrow[]{new Arrow(150,height/2,200,350, 6), new Arrow(width-50,150,25,750,9)},new Item[]{keyBasement},new Npc[]{maid},false);
+  basementScreen = new Screen(loadImage("backgrounds/basement.png"), "Basement", new Arrow[]{new Arrow(buttonXOffset,150,25,750, 8)},new Item[]{maidEntree,driedFlower},new Npc[]{cat},true);
+  masterBedScreen = new Screen(loadImage("backgrounds/bedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(buttonXOffset, 150,25,750,7)},new Item[]{letter,morphine,wifeEntree},new Npc[]{wife},true);
+  atticHallScreen = new Screen(loadImage("backgrounds/atticHall.png"), "Attic Hall", new Arrow[]{new Arrow(width-75, buttonYOffset,50,220, 12), new Arrow(buttonXOffset,150,25,750,7)},false);
+  atticScreen = new Screen(loadImage("backgrounds/attic.png"), "Attic", new Arrow[]{new Arrow(width-330,height-400,150,220,11)},new Item[]{butlerEntree,screwDriver},true);
+  hallScreen = new Screen(loadImage("backgrounds/leftHall.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, 150,25,750, 7), new Arrow(buttonXOffset, 150,25,750,14)}, new Item[]{keyAttic},false);
+  livingRoomScreen = new Screen(loadImage("backgrounds/livingRoom.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset,150,25,750,13)},new Item[]{brotherEntree},new Npc[]{brother},false);
 
   screens = new Screen[]{startScreen, creditScreen, explanationScreen1, explanationScreen2, explanationScreen3, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen, hallScreen, livingRoomScreen};
 }

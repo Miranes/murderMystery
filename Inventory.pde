@@ -2,10 +2,10 @@ class Inventory
 {
   PImage inventoryBag;
   PImage inventoryOpen;
-  int inventoryWidth = 250;
-  int inventoryHeight = 150;
-  float posX = 20 + 880;
-  float posY = height/2 -320;
+  int inventoryWidth = 375;
+  int inventoryHeight = 255;
+  float posX = 1500;
+  float posY = 20;
   ArrayList<InventoryItem> itemsInInventory;
   ArrayList<InventoryItem> diariesInInventory;
   TextBox[] buttons;
@@ -19,7 +19,7 @@ class Inventory
     diariesInInventory = new ArrayList();
     inventoryBag = loadImage("inventoryButton.png");
     inventoryOpen = loadImage("inventoryOpen.png");
-    buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-20,posY + 20, 20,20,22,"X")};
+    buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-30,posY + 30, 35,35,39,"X")};
   }
   
   void update()

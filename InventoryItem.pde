@@ -6,8 +6,8 @@ class InventoryItem
  float zoomedPosY;
  int invItemWidth = 50;
  int invItemHeight = 50;
- int zoomedInvWidth = 500;
- int zoomedInvHeight = 500;
+ int zoomedInvWidth = 550;
+ int zoomedInvHeight = 700;
  String identifier;
  PImage itemImg;
  boolean isClickable;
@@ -26,7 +26,7 @@ class InventoryItem
    {
      zoomedPosX = width/2-zoomedInvWidth/2;
      zoomedPosY = height/2-zoomedInvHeight/2;
-     closeButton = new TextBox(zoomedPosX + zoomedInvWidth-130,zoomedPosY + 60, 20,20,22,"X");
+     closeButton = new TextBox(zoomedPosX + zoomedInvWidth-182,zoomedPosY + 84, 35,35,39,"X");
    }
  }
  
@@ -59,26 +59,26 @@ class InventoryItem
          image(itemImg,zoomedPosX,zoomedPosY,zoomedInvWidth,zoomedInvHeight);
          if(closeButton.hover())
          {
-            if(closeButton.boxWidth != 25)
+            if(closeButton.boxWidth != 40)
             {
-              closeButton.boxWidth = 25;
-              closeButton.boxHeight = 25;
-              closeButton.textSize = 27;
+              closeButton.boxWidth = 40;
+              closeButton.boxHeight = 40;
+              closeButton.textSize = 43;
             }
             if(mousePressed && !closeButton.clicked)
             {
               mainCharacter.isMoving = true;
-             diaryOpen = false;
-             closeButton.clicked = true;
+              diaryOpen = false;
+              closeButton.clicked = true;
             }
           }
           else
           {
-             if(closeButton.boxWidth != 20)
+             if(closeButton.boxWidth != 35)
              {
-               closeButton.boxWidth = 20;
-               closeButton.boxHeight = 20;
-               closeButton.textSize = 22;
+               closeButton.boxWidth = 35;
+               closeButton.boxHeight = 35;
+               closeButton.textSize = 39;
              }
           }
           closeButton.update();

@@ -2,9 +2,8 @@ class Arrow
 {
  float xPos;
  float yPos;
- int arrowWidth = 50;
- int arrowHeight = 50;
- float rotation;
+ int arrowWidth;
+ int arrowHeight;
  PImage arrow;
  int transition;
  float sXPos = width/2;
@@ -12,26 +11,26 @@ class Arrow
  boolean clicked = false;
  
  
- Arrow(float pXPos, float pYPos, float pRotation, int pTransition)
+ Arrow(float pXPos, float pYPos, int pArrowWidth, int pArrowHeight,int pTransition)
  {
    
    transition = pTransition;
    xPos = pXPos;
    yPos = pYPos; 
+   arrowWidth = pArrowWidth;
+   arrowHeight = pArrowHeight;
    arrow = loadImage("arrow.png");
-   rotation = pRotation;
  }  
   
  void update()
  {
    if(currentScreen < 6)
    {
-     pushMatrix();
-     translate(xPos,yPos);
+     if(hoverMouse())fill(255);
+     else fill(0);
+     rect(xPos,yPos,arrowWidth,arrowHeight);
      fill(255);
-     rotate(rotation);
-     image(arrow,-25,-25,50,50);
-     popMatrix();
+     image(arrow,xPos,yPos,50,50);
    }
    
     if(hoverPlayer() && currentScreen >= 6)
@@ -58,19 +57,19 @@ class Arrow
 boolean hoverPlayer()
 {
   if(mainCharacter.posX-40+mainCharacter.imageWidth-165 >= xPos &&
-     mainCharacter.posX <= xPos+arrowWidth &&
+     mainCharacter.posX-30 <= xPos+arrowWidth &&
      mainCharacter.posY+20 <= yPos+arrowHeight &&
-     mainCharacter.posY+mainCharacter.imageHeight-30 >= yPos ) return true;
+     mainCharacter.posY+mainCharacter.imageHeight+40 >= yPos ) return true;
      
      return false;
 }
 
 boolean hoverMouse()
 {
- if(mouseX >= xPos-25 &&
-    mouseX <= xPos+arrowWidth-25 &&
-    mouseY >= yPos-25 &&
-    mouseY <= yPos+arrowHeight-25) return true;
+ if(mouseX >= xPos-15 &&
+    mouseX <= xPos+arrowWidth-10 &&
+    mouseY >= yPos-15 &&
+    mouseY <= yPos+arrowHeight-10) return true;
     return false;
 }
   

@@ -63,17 +63,17 @@ class Item
       }
     }
     
-    //displaying item until collected
+    //displaying item if not collected
     if(!collected) image(itemImg,xPos,yPos,itemWidth,itemHeight);
     
   }
   
   boolean playerHover()
   {
-    if(mainCharacter.posX-40+mainCharacter.imageWidth-165 >= xPos &&
+    if(mainCharacter.posX+mainCharacter.imageWidth-230 >= xPos &&
        mainCharacter.posX <= xPos+itemWidth+20 &&
        mainCharacter.posY+20 <= yPos+itemHeight &&
-       mainCharacter.posY+mainCharacter.imageHeight-30 >= yPos )
+       mainCharacter.posY+mainCharacter.imageHeight+40 >= yPos )
        {
          itemFound = true; 
          return true;
@@ -85,8 +85,8 @@ class Item
   {
     if(mouseX >= xPos  &&
        mouseX <= xPos+itemWidth-10 &&
-       mouseY >= yPos &&
-       mouseY <= yPos+itemHeight) return true;
+       mouseY >= yPos-10 &&
+       mouseY <= yPos+itemHeight-10) return true;
    return false; 
   }
 }

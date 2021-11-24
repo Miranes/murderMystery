@@ -7,42 +7,44 @@ class Screen {
   TextBox[] textboxes;
   TextBox menu;
   Npc[] npcs = null;
+  boolean locked;
 
-  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems, Npc[] pNpcs){
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems, Npc[] pNpcs, boolean pLocked){
     backgroundImg = pBackground;
     screen = pScreen;
     arrows = pArrows;
     items = pItems;
     npcs = pNpcs;
+    locked = pLocked;
     screenNameBckg = loadImage("menuButton.png");
     //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxIm
     menu = new TextBox(100,50,100,60,25,"MENU",loadImage("menuButton.png"));
   }
   
-  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs)
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs, boolean pLocked)
   {
-    this(pBackground,pScreen,pArrows,null,pNpcs);
+    this(pBackground,pScreen,pArrows,null,pNpcs, pLocked);
   }
   
-  Screen(PImage pBackground, String pScreen, Arrow[] pArrows)
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, boolean pLocked)
   {
-    this(pBackground,pScreen,pArrows,null,null);
+    this(pBackground,pScreen,pArrows,null,null, pLocked);
   }
-  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems)
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems, boolean pLocked)
   {
-    this(pBackground,pScreen,pArrows,pItems,null);
+    this(pBackground,pScreen,pArrows,pItems,null,pLocked);
   }
   
-  Screen(PImage pBackground, String pScreen, TextBox[] pTextboxes)
+  Screen(PImage pBackground, String pScreen, TextBox[] pTextboxes, boolean pLocked)
   {
     
-    this(pBackground,pScreen,null,null,null);
+    this(pBackground,pScreen,null,null,null,pLocked);
     textboxes = pTextboxes;
   }
   
-  Screen(PImage pBackground, String pScreen)
+  Screen(PImage pBackground, String pScreen, boolean pLocked)
   {
-    this(pBackground,pScreen,null,null,null);
+    this(pBackground,pScreen,null,null,null,pLocked);
   }
   
   void update() {
@@ -115,21 +117,21 @@ class Screen {
       {
         if(inventory.buttons[1].hover())
         {
-          if(inventory.buttons[1].boxWidth != 25)
-          {
-            inventory.buttons[1].boxWidth = 25;
-            inventory.buttons[1].boxHeight = 25;
-            inventory.buttons[1].textSize = 27;
-          }
+            if(inventory.buttons[1].boxWidth != 40)
+            {
+              inventory.buttons[1].boxWidth = 40;
+              inventory.buttons[1].boxHeight = 40;
+              inventory.buttons[1].textSize = 43;
+            }
         }
         else
         {
-         if(inventory.buttons[1].boxWidth != 20)
-         {
-           inventory.buttons[1].boxWidth = 20;
-           inventory.buttons[1].boxHeight = 20;
-           inventory.buttons[1].textSize = 22;
-         }
+           if(inventory.buttons[1].boxWidth != 35)
+           {
+             inventory.buttons[1].boxWidth = 35;
+             inventory.buttons[1].boxHeight = 35;
+             inventory.buttons[1].textSize = 39;
+           }
         }
       }
       inventory.update();

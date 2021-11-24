@@ -7,8 +7,8 @@ class Player
   float translateY = height/2+30;
   float nextScreenPosX;
   float nextScreenPosY;
-  int playerHeight = 200;
-  int playerWidth = 200;
+  int playerHeight = 300;
+  int playerWidth = 300;
   int spriteWidth;
   int spriteHeight;
   int imageWidth;
@@ -43,7 +43,7 @@ class Player
 
     if (mousePressed && !isMoving && !inventory.overButton() && !inventory.overInventoryBox()) 
     {
-      translateX = mouseX - playerWidth/2 + 100;
+      translateX = mouseX - playerWidth/2 + 175;
       translateY = mouseY - playerHeight/2;
       isMoving = true;
     }
