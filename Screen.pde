@@ -86,7 +86,7 @@ class Screen {
       }
     }
     if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
-    if(items != null) for(int i=0; i<items.length;i++)items[i].update();
+    //if(items != null) for(int i=0; i<items.length;i++)items[i].update();
     
     if(currentScreen >= 6)
     {

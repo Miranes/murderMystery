@@ -73,6 +73,7 @@ void setup() {
   int buttonYOffset = 150;
   
   //initializing the items
+  /*
   butlerEntree = new Item(loadImage("emptyEntree.png"),200,height/2,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),inventory.posX+30,20 + inventory.posY,true,"butlerEntree"));
   maidEntree = new Item(loadImage("emptyEntree.png"),width - 200, height - 60,50,50,true,new InventoryItem(loadImage("writtenEntree.png"),70 + inventory.posX,20 + inventory.posY,true,"maidEntree"));
   brotherEntree = new Item(loadImage("emptyEntree.png"),width/2, 60, 50,50,true,new InventoryItem(loadImage("writtenEntree.png"),110 + inventory.posX,20 + inventory.posY,true,"brotherEntree"));
@@ -83,8 +84,9 @@ void setup() {
   keyAttic = new Item(loadImage("keyAttic.png"),width/2, height - 360,50,50,false,new InventoryItem(loadImage("keyAttic.png"),150 + inventory.posX,80 + inventory.posY,false,"keyAttic"));
   keyBasement = new Item(loadImage("keyBasement.png"),width/2, height - 420,50,50,false,new InventoryItem(loadImage("keyBasement.png"),30 + inventory.posX,80 + inventory.posY,false,"keyBasement"));
   letter = new Item(loadImage("letter.png"),width/2, height - 480,50,50,false,new InventoryItem(loadImage("letter.png"),30 + inventory.posX,80 + inventory.posY,false,"letter"));
+  */
   
-  items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
+  //items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
   
   //initializing all 11 screens
   startScreen = new Screen(loadImage("entrance.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))});
