@@ -20,8 +20,6 @@ class Inventory
     inventoryBag = loadImage("inventoryButton.png");
     inventoryOpen = loadImage("inventoryOpen.png");
     buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-20,posY + 20, 20,20,22,"X")};
-    //buttons[0].rgbColor[1] = 255;
-    //buttons[0].rgbColor[2] = 255;
   }
   
   void update()

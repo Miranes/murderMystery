@@ -28,6 +28,10 @@ class Screen {
   {
     this(pBackground,pScreen,pArrows,null,null);
   }
+  Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Item[] pItems)
+  {
+    this(pBackground,pScreen,pArrows,pItems,null);
+  }
   
   Screen(PImage pBackground, String pScreen, TextBox[] pTextboxes)
   {
@@ -42,7 +46,7 @@ class Screen {
   }
   
   void update() {
-    background(backgroundImg);
+    image(backgroundImg,0,0,width,height);
     textSize(32);
     textAlign(CENTER,CENTER);
     image(screenNameBckg, width/2-122,15,240,80);
@@ -86,7 +90,7 @@ class Screen {
       }
     }
     if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
-    //if(items != null) for(int i=0; i<items.length;i++)items[i].update();
+    if(items != null) for(int i=0; i<items.length;i++)items[i].update();
     
     if(currentScreen >= 6)
     {

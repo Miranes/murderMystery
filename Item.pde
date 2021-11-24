@@ -5,8 +5,13 @@ class Item
   float yPos;
   int itemWidth;
   int itemHeight;
+  int normalWidth;
+  int normalHeight;
+  int hoveredWidth;
+  int hoveredHeight;
   boolean itemFound;
   boolean diary;
+  boolean collected;
   InventoryItem itemInv;
   
   
@@ -19,23 +24,51 @@ class Item
     itemHeight = pItemHeight;
     diary = pDiary;
     itemInv = pItemInv;
+    normalWidth = pItemWidth;
+    normalHeight = pItemHeight;
+    hoveredWidth = pItemWidth + 10;
+    hoveredHeight = pItemHeight + 10;
+    
   }
   
   void update()
   {
-    if(diary)
+    //checking if item is already collected and adding it to array
+    if(playerHover() && !collected)
     {
-      if(hover() && !inventory.diariesInInventory.contains(itemInv))inventory.diariesInInventory.add(itemInv); 
+      if(diary) inventory.diariesInInventory.add(itemInv); 
+      else inventory.itemsInInventory.add(itemInv);
+
+      collected = true;
     }
-    else
+    
+    //hovering over item with cursor if not collected yet
+    if(!collected)
     {
-      if(hover() && !inventory.itemsInInventory.contains(itemInv))inventory.itemsInInventory.add(itemInv);
+      if(mouseHover())
+      {
+        if(itemWidth != hoveredWidth)
+        {
+          itemWidth = hoveredWidth;
+          itemHeight = hoveredHeight;
+        }
+      }
+      else
+      {
+        if(itemWidth != normalWidth)
+        {
+         itemWidth = normalWidth;
+         itemHeight = normalHeight;
+        }
+      }
     }
-    image(itemImg,xPos,yPos,itemWidth,itemHeight);
+    
+    //displaying item until collected
+    if(!collected) image(itemImg,xPos,yPos,itemWidth,itemHeight);
     
   }
   
-  boolean hover()
+  boolean playerHover()
   {
     if(mainCharacter.posX-40+mainCharacter.imageWidth-165 >= xPos &&
        mainCharacter.posX <= xPos+itemWidth+20 &&
@@ -48,4 +81,12 @@ class Item
     return false;
   }
 
+  boolean mouseHover()
+  {
+    if(mouseX >= xPos  &&
+       mouseX <= xPos+itemWidth-10 &&
+       mouseY >= yPos &&
+       mouseY <= yPos+itemHeight) return true;
+   return false; 
+  }
 }
