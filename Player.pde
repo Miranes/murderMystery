@@ -41,10 +41,12 @@ class Player
   
   void update() { 
 
-    if (mousePressed && !isMoving && !inventory.overButton() && !inventory.overInventoryBox()) 
+    if (mousePressed && !isMoving && !inventory.overButton() && !inventory.overInventoryBox()) //&& mouseY <= 760 && mouseY >= 285) 
     {
       translateX = mouseX - playerWidth/2 + 175;
       translateY = mouseY - playerHeight/2;
+      if(translateY > 600) translateY = 600;
+      else if(translateY < 135) translateY = 135; 
       isMoving = true;
     }
     
@@ -61,7 +63,7 @@ class Player
 
     if (posX != translateX && posY != translateY) 
     {
-
+      
       posX = lerp(posX, translateX, .04);
       posY = lerp(posY, translateY, .04);
     } 

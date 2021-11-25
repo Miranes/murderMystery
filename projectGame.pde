@@ -51,8 +51,8 @@ PImage cursorImg;
 
 void setup() {
 
-  size(1920,1080);
-  //fullScreen();
+  size(1920,1080,P2D);
+  //fullScreen(P2D);
   
   //Font
   pixelFont = createFont("pixelFont.ttf",72);
