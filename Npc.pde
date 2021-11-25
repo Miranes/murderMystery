@@ -7,9 +7,10 @@ class Npc
   String npcImgName;
   TextBox dialogue;
   Animation npcAnimation;
-  
+  boolean clicked;
+  String futureText;
 
-  Npc(float pPosX, float pPosY, int pNpcWidth, int pNpcHeight, String pNpcImgName, TextBox pDialogue,  Animation pNpcAnimation)
+  Npc(float pPosX, float pPosY, int pNpcWidth, int pNpcHeight, String pNpcImgName, TextBox pDialogue, String pFutureText,  Animation pNpcAnimation)
   {
      posX = pPosX;
      posY = pPosY;
@@ -17,6 +18,7 @@ class Npc
      npcHeight = pNpcHeight;
      npcImgName = pNpcImgName;
      dialogue = pDialogue;
+     futureText = pFutureText;
      npcAnimation = pNpcAnimation;
      npcAnimation.posX = pPosX;
      npcAnimation.posY = pPosY;
@@ -34,7 +36,26 @@ class Npc
     {
       rect(posX,posY,npcWidth,npcHeight);
     }
+    
+    if(hover() )//&& mousePressed && !clicked)
+    {
+     //clicked = true;
+     dialogue.boxText = futureText;
+    }
+    else
+    {
+       dialogue.boxText = "hey";
+    }
     dialogue.update();
+  }
+  
+  boolean hover()
+  {
+    if(mouseX >= posX &&
+       mouseX <= posX+npcWidth &&
+       mouseY >= posY &&
+       mouseY <= posY+npcHeight) return true;
+    return false; 
   }
   
 }

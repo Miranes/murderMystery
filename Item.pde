@@ -1,6 +1,7 @@
 class Item
 {
   PImage itemImg;
+  String itemPath;
   float xPos;
   float yPos;
   int itemWidth;
@@ -15,9 +16,10 @@ class Item
   InventoryItem itemInv;
   
   
-  Item(PImage pItemImg ,float pXPos, float pYPos, int pItemWidth, int pItemHeight, boolean pDiary,  InventoryItem pItemInv)
+  Item(String pItemPath ,float pXPos, float pYPos, int pItemWidth, int pItemHeight, boolean pDiary,  InventoryItem pItemInv)
   {
-    itemImg = pItemImg;
+    itemPath = pItemPath;
+    itemImg = loadImage(pItemPath);
     xPos = pXPos;
     yPos = pYPos;
     itemWidth = pItemWidth;

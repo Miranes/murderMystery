@@ -78,11 +78,11 @@ void setup() {
   PImage dialogueBoxImg = loadImage("dialogueBox.png");
   
   //initializing npcs
-  wife = new Npc(width/2-38,height/2+60,300,300,"wife",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/wifeIdle.png"),6,1));
-  brother = new Npc(width-500,height/2+30,330,330,"brother",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/brotherIdle.png"),5,1));
-  butler = new Npc(width/2-98,height/2+30,330,330,"butler",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/butlerIdle.png"),4,1));
-  maid = new Npc(width/2-56,height/2+60,300,300,"maid",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/maidIdle.png"),4,1));
-  cat = new Npc(320,height/2-280,250,250,"cat",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/catIdle.png"),6,1));
+  wife = new Npc(width/2-38,height/2+60,300,300,"wife",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),"I'm the wife",new Animation(loadImage("npcs/wifeIdle.png"),6,1));
+  brother = new Npc(width-500,height/2+30,330,330,"brother",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),"I'm the brother",new Animation(loadImage("npcs/brotherIdle.png"),5,1));
+  butler = new Npc(width/2-98,height/2+30,330,330,"butler",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),"I'm the butler",new Animation(loadImage("npcs/butlerIdle.png"),4,1));
+  maid = new Npc(width/2-56,height/2+60,300,300,"maid",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),"I'm the maid",new Animation(loadImage("npcs/maidIdle.png"),4,1));
+  cat = new Npc(320,height/2-280,250,250,"cat",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),"I'm the cat",new Animation(loadImage("npcs/catIdle.png"),6,1));
   
   //initializing inventory
   inventory = new Inventory();
@@ -91,21 +91,21 @@ void setup() {
   int buttonYOffset = 150;
   
   //item temp imgs variables
-  PImage emptyEntree = loadImage("items/emptyEntree.png");
-  PImage ButlerEntree = loadImage("items/butlerEntree.png");
-  PImage MaidEntree = loadImage("items/maidEntree.png");
-  PImage BrotherEntree = loadImage("items/brotherEntree.png");
-  PImage WifeEntree = loadImage("items/wifeEntree.png");
-  PImage DriedFlower = loadImage("items/driedFlower.png");
-  PImage Morphine = loadImage("items/morphine.png");
-  PImage ScrewDriver = loadImage("items/screwDriver.png");
-  PImage KeyAttic = loadImage("items/keyAttic.png") ;
-  PImage KeyBasement = loadImage("items/keyBasement.png");
-  PImage Letter = loadImage("items/letter.png");
-  PImage WifePortrait = loadImage("items/wifePortrait.png");
-  PImage BrotherPortrait = loadImage("items/brotherPortrait.png");
-  PImage MaidPortrait = loadImage("items/maidPortrait.png");
-  PImage ButlerPortrait = loadImage("items/butlerPortrait.png");
+  String emptyEntree = "items/emptyEntree.png";
+  String ButlerEntree = "items/butlerEntree.png";
+  String MaidEntree = "items/maidEntree.png";
+  String BrotherEntree = "items/brotherEntree.png";
+  String WifeEntree = "items/wifeEntree.png";
+  String DriedFlower = "items/driedFlower.png";
+  String Morphine = "items/morphine.png";
+  String ScrewDriver = "items/screwDriver.png";
+  String KeyAttic = "items/keyAttic.png";
+  String KeyBasement = "items/keyBasement.png";
+  String Letter = "items/letter.png";
+  String WifePortrait = "items/wifePortrait.png";
+  String BrotherPortrait = "items/brotherPortrait.png";
+  String MaidPortrait = "items/maidPortrait.png";
+  String ButlerPortrait = "items/butlerPortrait.png";
   
   //initializing the items
   butlerEntree = new Item(emptyEntree,width-110,300,50,50,true,new InventoryItem(ButlerEntree,inventory.posX+30,60 + inventory.posY,true,"butlerEntree"));

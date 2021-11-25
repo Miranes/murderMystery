@@ -12,6 +12,9 @@ class Inventory
   boolean clicked;
   boolean open;
   boolean diaryIsOpen;
+  boolean collectedBasementKey;
+  boolean collectedAtticKey;
+  boolean collectedScrewDriver;
   
   Inventory()
   {
@@ -73,6 +76,19 @@ class Inventory
             clicked = true; 
         }
      }
+     if(!collectedScrewDriver || !collectedAtticKey || !collectedBasementKey)
+     {
+       for(int i=0; i<itemsInInventory.size();i++)
+       {
+        if(!collectedScrewDriver && itemsInInventory.get(i).identifier == "screwDriver") collectedScrewDriver = true;
+        if(!collectedAtticKey && itemsInInventory.get(i).identifier == "keyAttic") collectedAtticKey = true;
+        if(!collectedBasementKey && itemsInInventory.get(i).identifier == "keyBasement")collectedBasementKey = true;
+       }
+     }
+     
+     if(collectedAtticKey && screens[12].locked) screens[12].locked = false;
+     if(collectedBasementKey && screens[9].locked) screens[9].locked = false;
+     
   }
   
   boolean overButton()
@@ -89,4 +105,5 @@ class Inventory
        mouseY <= posY+inventoryHeight && open) return true;
     return false;
   }
+  
 }

@@ -21,7 +21,7 @@ class Screen {
     //back to menu buttons
     menu = new TextBox(100,80,130,75,33,"MENU",loadImage("menuButton.png"));
     //choosing murderer button
-    chooseButton = new TextBox(width/2,height/2,300,300,loadImage("menuButton.png"));
+    chooseButton = new TextBox(width,height,300,300,loadImage("menuButton.png"));
     
   }
   
@@ -56,16 +56,20 @@ class Screen {
     this(pBackground,null,null,pItems,null,pLocked);
   }
   
-  void update() {
-    image(backgroundImg,0,0,width,height);
-    if(currentScreen < 15)
-    {
-      textSize(44);
-      textAlign(CENTER,CENTER);
-      image(screenNameBckg, width/2-145,30,290,100);
-      text(screen, width/2, 75); 
-    }  
+  void update() 
+  {
     
+      image(backgroundImg,0,0,width,height);
+      //Drawing the title of screens
+      if(currentScreen < 15)
+      {
+        textSize(44);
+        textAlign(CENTER,CENTER);
+        image(screenNameBckg, width/2-145,30,290,100);
+        text(screen, width/2, 75); 
+      }  
+      
+      //hovering animations and screen transition for the buttons in the main menu
       if(currentScreen == 0)
       {
         for(int i=0; i<textboxes.length; i++)
@@ -94,90 +98,103 @@ class Screen {
             }
             
             textboxes[i].update(); 
+          }
+        }
+      
+      
+      //update npcs and items to screen
+      if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
+      if(items != null) for(int i=0; i<items.length;i++)items[i].update();
+      
+       //updating hit boxes teleporters to screen
+      if(arrows != null)
+      {
+        for(int i=0; i<arrows.length; i++)
+        {
+          arrows[i].update();
         }
       }
-    
-    if(arrows != null)
-    {
-      for(int i=0; i<arrows.length; i++)
-      {
-        arrows[i].update();
-      }
-    }
-    if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
-    if(items != null) for(int i=0; i<items.length;i++)items[i].update();
-    
-    if(currentScreen > 5 && currentScreen < 15)
-    { 
-        if(!inventory.open)
-        {
-          if(inventory.buttons[0].hover())
+      
+      //Happens in the user playable screens
+      if(currentScreen > 5 && currentScreen < 15)
+      { 
+        //hover effects for when inventory is not open
+          if(!inventory.open)
           {
-            if(inventory.buttons[0].boxWidth != 110)
+            if(inventory.buttons[0].hover())
             {
-              inventory.buttons[0].boxWidth = 165;
-              inventory.buttons[0].boxHeight = 135;
+              if(inventory.buttons[0].boxWidth != 165)
+              {
+                inventory.buttons[0].boxWidth = 165;
+                inventory.buttons[0].boxHeight = 135;
+              }
+            }
+            else
+            {
+              if(inventory.buttons[0].boxWidth != 150)
+              {
+                inventory.buttons[0].boxWidth = 150;
+                inventory.buttons[0].boxHeight = 115;
+              }
             }
           }
+          //hover effectes for when inventory is open
           else
           {
-            inventory.buttons[0].boxWidth = 150;
-            inventory.buttons[0].boxHeight = 115;
+            if(inventory.buttons[1].hover())
+            {
+                if(inventory.buttons[1].boxWidth != 40)
+                {
+                  inventory.buttons[1].boxWidth = 40;
+                  inventory.buttons[1].boxHeight = 40;
+                  inventory.buttons[1].textSize = 43;
+                }
+            }
+            else
+            {
+               if(inventory.buttons[1].boxWidth != 35)
+               {
+                 inventory.buttons[1].boxWidth = 35;
+                 inventory.buttons[1].boxHeight = 35;
+                 inventory.buttons[1].textSize = 39;
+               }
+            }
           }
+          inventory.update();
+          
+          //takes you to the choose your murderer screen 
+          if(chooseButton.hover() && mousePressed && !chooseButton.clicked)
+          {
+            currentScreen = 15;
+            chooseButton.clicked = true;
+          }
+          chooseButton.update();
+      }
+      
+      //hover animations for the main menu buttons in every screen
+      if(currentScreen > 0)
+      {
+        if(menu.hover())
+        {
+          if(menu.boxWidth != 150)
+          {
+            menu.boxWidth = 150;
+            menu.boxHeight = 95;
+            menu.textSize = 38;
+          }
+          if(mousePressed && !menu.clicked) currentScreen = 0;
         }
         else
         {
-          if(inventory.buttons[1].hover())
-          {
-              if(inventory.buttons[1].boxWidth != 40)
-              {
-                inventory.buttons[1].boxWidth = 40;
-                inventory.buttons[1].boxHeight = 40;
-                inventory.buttons[1].textSize = 43;
-              }
-          }
-          else
-          {
-             if(inventory.buttons[1].boxWidth != 35)
-             {
-               inventory.buttons[1].boxWidth = 35;
-               inventory.buttons[1].boxHeight = 35;
-               inventory.buttons[1].textSize = 39;
-             }
-          }
+           if(menu.boxWidth != 130)
+           {
+             menu.boxWidth = 130;
+             menu.boxHeight = 75;
+             menu.textSize = 33;
+           }
         }
-        inventory.update();
-        if(chooseButton.hover() && mousePressed && !chooseButton.clicked)
-        {
-          currentScreen = 15;
-          chooseButton.clicked = true;
-        }
-        chooseButton.update();
-    }
-    
-    if(currentScreen > 0)
-    {
-      if(menu.hover())
-      {
-        if(menu.boxWidth != 150)
-        {
-          menu.boxWidth = 150;
-          menu.boxHeight = 95;
-          menu.textSize = 38;
-        }
-        if(mousePressed &&!menu.clicked) currentScreen = 0;
+        menu.update();
       }
-      else
-      {
-       if(menu.boxWidth != 130)
-       {
-         menu.boxWidth = 130;
-         menu.boxHeight = 75;
-         menu.textSize = 33;
-       }
-      }
-      menu.update();
-    }
   }
   
 }

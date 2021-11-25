@@ -15,9 +15,9 @@ class InventoryItem
  boolean diaryOpen;
  TextBox closeButton;
  
-  InventoryItem(PImage pItemImg, float pPosX, float pPosY, boolean pIsClickable, String pIdentifier)
+  InventoryItem(String pItemImg, float pPosX, float pPosY, boolean pIsClickable, String pIdentifier)
  {
-   itemImg = pItemImg;
+   itemImg = loadImage(pItemImg);
    posX = pPosX;
    posY = pPosY;
    isClickable = pIsClickable;

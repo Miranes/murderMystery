@@ -9,6 +9,7 @@ class Arrow
  float sXPos = width/2;
  float sYPos = height/2 + 30;
  boolean clicked = false;
+ int timer;
  
  
  Arrow(float pXPos, float pYPos, int pArrowWidth, int pArrowHeight,int pTransition)
@@ -45,7 +46,9 @@ class Arrow
      image(arrow,xPos,yPos,arrowWidth,arrowHeight);
    }
    
-    if(hoverPlayer() && currentScreen >= 6)
+    //teleporting to screens that are not locked
+    if(hoverPlayer() && currentScreen >= 6 && (transition != 9 || !screens[9].locked) 
+       && (transition != 10 || !screens[10].locked) && (transition != 12 || !screens[12].locked) )
     {
        currentScreen = transition; 
        mainCharacter.posX = sXPos;
@@ -53,7 +56,12 @@ class Arrow
        mainCharacter.translateX = sXPos;
        mainCharacter.translateY = sYPos;
      }
-     else if(hoverMouse() && mousePressed && !clicked && currentScreen < 6)
+     else if(hoverPlayer() && ((transition == 9 && screens[9].locked) || (transition == 10 && screens[10].locked) || (transition == 12 && screens[12].locked)))
+     {
+       text("Room locked, find key!", width/2,height-150); 
+     }
+     
+     if(currentScreen < 6 && hoverMouse() && mousePressed && !clicked)
      {
        
        for(int i=2; i<6; i++)
