@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 //declaring screens
 Screen[] screens;
 Screen startScreen;
@@ -54,6 +56,17 @@ Inventory inventory;
 //Game font
 PFont pixelFont;
 
+//Game sounds
+SoundFile collectingItem;
+SoundFile mainMenuSound;
+SoundFile restSound;
+
+//fading 
+SoundFile currentTrack = null;
+SoundFile nextTrack = null;
+float targetVolume = 1;
+boolean fading = false;
+
 int currentScreen;
 
 PImage cursorImg;
@@ -67,11 +80,18 @@ void setup() {
   pixelFont = createFont("pixelFont.ttf",72);
   textFont(pixelFont);
   
+  //sounds
+  collectingItem = new SoundFile(this, "collectingItem.wav");
+  restSound = new SoundFile(this, "restSound.mp3");
+  mainMenuSound = new SoundFile(this, "mainMenuSound.mp3");
+  
+  collectingItem.amp(1);
+
   //cursor
   cursorImg = loadImage("crosshair.png");
   cursor(cursorImg);
 
-  currentScreen = 10;
+  currentScreen = 0;
   mainCharacter = new Player();
   
   float dialogueBoxX = width/2;
@@ -117,14 +137,14 @@ void setup() {
   driedFlower = new Item(DriedFlower,width-280, height - 220,50,50,false,false,new InventoryItem(DriedFlower,inventory.posX+310,60 + inventory.posY,false,"driedFlower"));
   morphine = new Item(Morphine,width/2-280, height/2+110,50,50,false,false,new InventoryItem(Morphine,30 + inventory.posX,150 + inventory.posY,false,"morphine"));
   screwDriver = new Item(ScrewDriver,90,height/2+175,50,50,false,false,new InventoryItem(ScrewDriver,100 + inventory.posX,150 + inventory.posY,false,"screwDriver"));
-  keyAttic = new Item(KeyAttic,500, height/2+310,50,50,false,true,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
+  keyAttic = new Item(KeyAttic,width/2-200, height/2+310,50,50,false,true,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
   keyBasement = new Item(KeyBasement,width/2+500, height/2+150,50,50,false,false,new InventoryItem(KeyBasement,240 + inventory.posX,150 + inventory.posY,false,"keyBasement"));
   letter = new Item(Letter,width-100, height/2-170,50,50,false,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
   wifePortrait = new Item(WifePortrait,550, 260,361,625);
   brotherPortrait = new Item(BrotherPortrait,width -860, 260,361,625);
   maidPortrait = new Item(MaidPortrait,80, 260,361,625);
   butlerPortrait = new Item(ButlerPortrait,width-380, 260,361,625);
-  pot = new Item(Pot,width-380, 260,96,96);
+  pot = new Item(Pot,width/2-200, height/2+260,96,96);
   
   
   items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
@@ -153,10 +173,15 @@ void setup() {
   screens = new Screen[]{startScreen, creditScreen, explanationScreen1, explanationScreen2, explanationScreen3, 
                         respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, 
                         atticHallScreen, atticScreen, hallScreen, livingRoomScreen, chooseMurdererScreen, wonScreen, lostScreen, howToPlay};
+                        
+  startFade(mainMenuSound);
 }
 
 void draw()
 {
+  if(fading) doFade();
+  if(currentScreen < 6 || currentScreen > 17) startFade(mainMenuSound);
+  else startFade(restSound);
 
   for(int i=0; i<screens.length; i++)
   {
@@ -166,7 +191,6 @@ void draw()
        break;
      } 
   }
-  
    if(currentScreen > 5 && currentScreen < 15) mainCharacter.update();
 }
 
@@ -209,5 +233,28 @@ void mouseReleased()
        }
     }
     if(screens[currentScreen].chooseButton.clicked) screens[currentScreen].chooseButton.clicked = false;
+  }
+}
+
+void startFade(SoundFile pNextTrack)
+{
+  if(nextTrack == pNextTrack) return;
+  currentTrack = nextTrack;
+  nextTrack = pNextTrack;
+  fading = true;
+  targetVolume = 1 - targetVolume;
+  pNextTrack.amp(targetVolume);
+  pNextTrack.loop();
+}
+
+void doFade()
+{
+  targetVolume += 1/200.0;
+  if (currentTrack != null) currentTrack.amp(constrain (1-targetVolume, 0, 1));
+  if (nextTrack != null) nextTrack.amp(constrain (targetVolume, 0, 1));
+  fading = targetVolume < 0.2;
+  
+  if (!fading && currentTrack != null) {
+    currentTrack.stop();
   }
 }

@@ -15,6 +15,7 @@ class Item
   boolean diary;
   boolean collected;
   boolean hiddenItem;
+  boolean hoverable = true;
   boolean clicked = false;
   InventoryItem itemInv;
   
@@ -52,12 +53,13 @@ class Item
       else inventory.itemsInInventory.add(itemInv);
 
       collected = true;
+      collectingItem.play();
     }
     
     //hovering over item with cursor if not collected yet
     if(!collected && !hiddenItem)
     {
-      if(mouseHover())
+      if(mouseHover() && hoverable)
       {
         if(itemWidth != hoveredWidth)
         {
@@ -79,6 +81,7 @@ class Item
     if(itemPath == "items/pot.png" && mouseHover() && mousePressed && !clicked)
     {
       itemImg = otherImg;
+      hoverable = false;
       keyAttic.hiddenItem = false;
       clicked = true;
     }
