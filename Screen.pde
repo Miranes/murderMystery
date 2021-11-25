@@ -18,7 +18,7 @@ class Screen {
     locked = pLocked;
     screenNameBckg = loadImage("menuButton.png");
     //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxIm
-    menu = new TextBox(100,50,100,60,25,"MENU",loadImage("menuButton.png"));
+    menu = new TextBox(100,80,160,96,40,"MENU",loadImage("menuButton.png"));
   }
   
   Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs, boolean pLocked)
@@ -49,10 +49,10 @@ class Screen {
   
   void update() {
     image(backgroundImg,0,0,width,height);
-    textSize(32);
+    textSize(44);
     textAlign(CENTER,CENTER);
-    image(screenNameBckg, width/2-122,15,240,80);
-    text(screen, width/2, 50); 
+    image(screenNameBckg, width/2-145,30,290,100);
+    text(screen, width/2, 75); 
     
       if(currentScreen == 0)
       {
@@ -63,9 +63,9 @@ class Screen {
            {
              if(textboxes[i].boxWidth != 300)
               {
-                textboxes[i].boxWidth = 300;
-                textboxes[i].boxHeight = 96;
-                textboxes[i].textSize = 60;
+                textboxes[i].boxWidth = 450;
+                textboxes[i].boxHeight = 144;
+                textboxes[i].textSize = 90;
               }
               if(mousePressed && !textboxes[i].clicked)
               {
@@ -75,9 +75,9 @@ class Screen {
            }
            else if(textboxes[i].boxWidth != 250)
             {
-              textboxes[i].boxWidth = 250;
-              textboxes[i].boxHeight = 80;
-              textboxes[i].textSize = 50;
+              textboxes[i].boxWidth = 375;
+              textboxes[i].boxHeight = 120;
+              textboxes[i].textSize = 75;
             }
             
             textboxes[i].update(); 
@@ -103,14 +103,14 @@ class Screen {
         {
           if(inventory.buttons[0].boxWidth != 110)
           {
-            inventory.buttons[0].boxWidth = 110;
-            inventory.buttons[0].boxHeight = 94;
+            inventory.buttons[0].boxWidth = 165;
+            inventory.buttons[0].boxHeight = 135;
           }
         }
         else
         {
-          inventory.buttons[0].boxWidth = 100;
-          inventory.buttons[0].boxHeight = 84;
+          inventory.buttons[0].boxWidth = 150;
+          inventory.buttons[0].boxHeight = 115;
         }
       }
       else
@@ -142,9 +142,9 @@ class Screen {
       {
         if(menu.boxWidth != 110)
         {
-          menu.boxWidth = 110;
-          menu.boxHeight = 70;
-          menu.textSize = 30;
+          menu.boxWidth = 176;
+          menu.boxHeight = 112;
+          menu.textSize = 48;
         }
         if(mousePressed &&!menu.clicked) currentScreen = 0;
       }
@@ -152,9 +152,9 @@ class Screen {
       {
        if(menu.boxWidth != 100)
        {
-         menu.boxWidth = 100;
-         menu.boxHeight = 60;
-         menu.textSize = 25;
+         menu.boxWidth = 160;
+         menu.boxHeight = 96;
+         menu.textSize = 40;
        }
       }
       menu.update();
