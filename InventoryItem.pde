@@ -26,7 +26,7 @@ class InventoryItem
    {
      zoomedPosX = width/2-zoomedInvWidth/2;
      zoomedPosY = height/2-zoomedInvHeight/2;
-     closeButton = new TextBox(zoomedPosX + zoomedInvWidth-182,zoomedPosY + 84, 35,35,39,"X");
+     closeButton = new TextBox(zoomedPosX + zoomedInvWidth-90,zoomedPosY + 84, 35,35,39,"X");
    }
  }
  

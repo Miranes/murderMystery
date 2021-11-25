@@ -79,7 +79,7 @@ void setup() {
   
   //initializing npcs
   wife = new Npc(width/2-38,height/2+60,300,300,"wife",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/wifeIdle.png"),6,1));
-  brother = new Npc(width/2+100,height/2+30,330,330,"brother",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/brotherIdle.png"),5,1));
+  brother = new Npc(width-500,height/2+30,330,330,"brother",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/brotherIdle.png"),5,1));
   butler = new Npc(width/2-98,height/2+30,330,330,"butler",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/butlerIdle.png"),4,1));
   maid = new Npc(width/2-56,height/2+60,300,300,"maid",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/maidIdle.png"),4,1));
   cat = new Npc(320,height/2-280,250,250,"cat",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/catIdle.png"),6,1));
@@ -108,16 +108,16 @@ void setup() {
   PImage ButlerPortrait = loadImage("items/butlerPortrait.png");
   
   //initializing the items
-  butlerEntree = new Item(emptyEntree,width-130,height/2+180,50,50,true,new InventoryItem(ButlerEntree,inventory.posX+30,60 + inventory.posY,true,"butlerEntree"));
+  butlerEntree = new Item(emptyEntree,width-110,300,50,50,true,new InventoryItem(ButlerEntree,inventory.posX+30,60 + inventory.posY,true,"butlerEntree"));
   maidEntree = new Item(emptyEntree,width/2 + 350, height/2-30,50,50,true,new InventoryItem(MaidEntree,100 + inventory.posX,60 + inventory.posY,true,"maidEntree"));
   brotherEntree = new Item(emptyEntree,width/2-350, height-300, 50,50,true,new InventoryItem(BrotherEntree,170 + inventory.posX,60 + inventory.posY,true,"brotherEntree"));
   wifeEntree = new Item(emptyEntree,width-250, height-220,50,50,true,new InventoryItem(WifeEntree,240 + inventory.posX,60 + inventory.posY,true,"wifeEntree"));
   driedFlower = new Item(DriedFlower,width-280, height - 220,50,50,false,new InventoryItem(DriedFlower,inventory.posX+310,60 + inventory.posY,false,"driedFlower"));
-  morphine = new Item(Morphine,width/2+270, height - 345,50,50,false,new InventoryItem(Morphine,30 + inventory.posX,150 + inventory.posY,false,"morphine"));
-  screwDriver = new Item(ScrewDriver,width-80,height/2+100,50,50,false,new InventoryItem(ScrewDriver,100 + inventory.posX,150 + inventory.posY,false,"screwDriver"));
+  morphine = new Item(Morphine,width/2-280, height/2+110,50,50,false,new InventoryItem(Morphine,30 + inventory.posX,150 + inventory.posY,false,"morphine"));
+  screwDriver = new Item(ScrewDriver,90,height/2+175,50,50,false,new InventoryItem(ScrewDriver,100 + inventory.posX,150 + inventory.posY,false,"screwDriver"));
   keyAttic = new Item(KeyAttic,500, height/2+310,50,50,false,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
   keyBasement = new Item(KeyBasement,width/2+500, height/2+150,50,50,false,new InventoryItem(KeyBasement,240 + inventory.posX,150 + inventory.posY,false,"keyBasement"));
-  letter = new Item(Letter,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  letter = new Item(Letter,width-100, height/2-170,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
   wifePortrait = new Item(WifePortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
   brotherPortrait = new Item(BrotherPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
   maidPortrait = new Item(MaidPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
