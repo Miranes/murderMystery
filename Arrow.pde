@@ -58,7 +58,7 @@ class Arrow
      }
      else if(hoverPlayer() && ((transition == 9 && screens[9].locked) || (transition == 10 && screens[10].locked) || (transition == 12 && screens[12].locked)))
      {
-       text("Room locked, find key!", width/2,height-150); 
+       text("The attic is locked, I have to find a key to open it!", width/2,height-150); 
      }
      
      if(currentScreen < 6 && hoverMouse() && mousePressed && !clicked)
