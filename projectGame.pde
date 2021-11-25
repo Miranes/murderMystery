@@ -36,6 +36,7 @@ Item wifePortrait;
 Item brotherPortrait;
 Item maidPortrait;
 Item butlerPortrait;
+Item pot;
 
 //declaring NPCs
 Npc wife;
@@ -70,7 +71,7 @@ void setup() {
   cursorImg = loadImage("crosshair.png");
   cursor(cursorImg);
 
-  currentScreen = 15;
+  currentScreen = 10;
   mainCharacter = new Player();
   
   float dialogueBoxX = width/2;
@@ -106,22 +107,24 @@ void setup() {
   String BrotherPortrait = "items/brotherPortrait.png";
   String MaidPortrait = "items/maidPortrait.png";
   String ButlerPortrait = "items/butlerPortrait.png";
+  String Pot = "items/pot.png";
   
   //initializing the items
-  butlerEntree = new Item(emptyEntree,width-110,300,50,50,true,new InventoryItem(ButlerEntree,inventory.posX+30,60 + inventory.posY,true,"butlerEntree"));
-  maidEntree = new Item(emptyEntree,width/2 + 350, height/2-30,50,50,true,new InventoryItem(MaidEntree,100 + inventory.posX,60 + inventory.posY,true,"maidEntree"));
-  brotherEntree = new Item(emptyEntree,width/2-350, height-300, 50,50,true,new InventoryItem(BrotherEntree,170 + inventory.posX,60 + inventory.posY,true,"brotherEntree"));
-  wifeEntree = new Item(emptyEntree,width-250, height-220,50,50,true,new InventoryItem(WifeEntree,240 + inventory.posX,60 + inventory.posY,true,"wifeEntree"));
-  driedFlower = new Item(DriedFlower,width-280, height - 220,50,50,false,new InventoryItem(DriedFlower,inventory.posX+310,60 + inventory.posY,false,"driedFlower"));
-  morphine = new Item(Morphine,width/2-280, height/2+110,50,50,false,new InventoryItem(Morphine,30 + inventory.posX,150 + inventory.posY,false,"morphine"));
-  screwDriver = new Item(ScrewDriver,90,height/2+175,50,50,false,new InventoryItem(ScrewDriver,100 + inventory.posX,150 + inventory.posY,false,"screwDriver"));
-  keyAttic = new Item(KeyAttic,500, height/2+310,50,50,false,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
-  keyBasement = new Item(KeyBasement,width/2+500, height/2+150,50,50,false,new InventoryItem(KeyBasement,240 + inventory.posX,150 + inventory.posY,false,"keyBasement"));
-  letter = new Item(Letter,width-100, height/2-170,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  wifePortrait = new Item(WifePortrait,550, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  brotherPortrait = new Item(BrotherPortrait,width -860, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  maidPortrait = new Item(MaidPortrait,80, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  butlerPortrait = new Item(ButlerPortrait,width-380, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  butlerEntree = new Item(emptyEntree,width-110,300,50,50,true,false,new InventoryItem(ButlerEntree,inventory.posX+30,60 + inventory.posY,true,"butlerEntree"));
+  maidEntree = new Item(emptyEntree,width/2 + 350, height/2-30,50,50,true,false,new InventoryItem(MaidEntree,100 + inventory.posX,60 + inventory.posY,true,"maidEntree"));
+  brotherEntree = new Item(emptyEntree,width/2-350, height-300, 50,50,true,false,new InventoryItem(BrotherEntree,170 + inventory.posX,60 + inventory.posY,true,"brotherEntree"));
+  wifeEntree = new Item(emptyEntree,width-250, height-220,50,50,true,false,new InventoryItem(WifeEntree,240 + inventory.posX,60 + inventory.posY,true,"wifeEntree"));
+  driedFlower = new Item(DriedFlower,width-280, height - 220,50,50,false,false,new InventoryItem(DriedFlower,inventory.posX+310,60 + inventory.posY,false,"driedFlower"));
+  morphine = new Item(Morphine,width/2-280, height/2+110,50,50,false,false,new InventoryItem(Morphine,30 + inventory.posX,150 + inventory.posY,false,"morphine"));
+  screwDriver = new Item(ScrewDriver,90,height/2+175,50,50,false,false,new InventoryItem(ScrewDriver,100 + inventory.posX,150 + inventory.posY,false,"screwDriver"));
+  keyAttic = new Item(KeyAttic,500, height/2+310,50,50,false,true,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
+  keyBasement = new Item(KeyBasement,width/2+500, height/2+150,50,50,false,false,new InventoryItem(KeyBasement,240 + inventory.posX,150 + inventory.posY,false,"keyBasement"));
+  letter = new Item(Letter,width-100, height/2-170,50,50,false,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  wifePortrait = new Item(WifePortrait,550, 260,361,625);
+  brotherPortrait = new Item(BrotherPortrait,width -860, 260,361,625);
+  maidPortrait = new Item(MaidPortrait,80, 260,361,625);
+  butlerPortrait = new Item(ButlerPortrait,width-380, 260,361,625);
+  pot = new Item(Pot,width-380, 260,96,96);
   
   
   items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
@@ -141,7 +144,7 @@ void setup() {
   masterBedScreen = new Screen(loadImage("backgrounds/bedroom.png"), "Master Bedroom", new Arrow[]{new Arrow(buttonXOffset, 150,25,750,7)},new Item[]{letter,morphine,wifeEntree},new Npc[]{wife},true);
   atticHallScreen = new Screen(loadImage("backgrounds/atticHall.png"), "Attic Hall", new Arrow[]{new Arrow(width-75, buttonYOffset,50,220, 12), new Arrow(buttonXOffset,150,25,750,7)},false);
   atticScreen = new Screen(loadImage("backgrounds/attic.png"), "Attic", new Arrow[]{new Arrow(width-330,height-400,150,220,11)},new Item[]{butlerEntree,screwDriver},true);
-  hallScreen = new Screen(loadImage("backgrounds/leftHall.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, 150,25,750, 7), new Arrow(buttonXOffset, 150,25,750,14)}, new Item[]{keyAttic},false);
+  hallScreen = new Screen(loadImage("backgrounds/leftHall.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, 150,25,750, 7), new Arrow(buttonXOffset, 150,25,750,14)}, new Item[]{keyAttic,pot},false);
   livingRoomScreen = new Screen(loadImage("backgrounds/livingRoom.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset,150,25,750,13)},new Item[]{brotherEntree},new Npc[]{brother},false);
   chooseMurdererScreen = new Screen(loadImage("backgrounds/choosingMurderer.png"),new Item[]{wifePortrait,brotherPortrait,maidPortrait,butlerPortrait},false);
   wonScreen = new Screen(loadImage("backgrounds/wonScreen.png"), "You Won",false);

@@ -21,7 +21,7 @@ class Screen {
     //back to menu buttons
     menu = new TextBox(100,80,130,75,33,"MENU",loadImage("menuButton.png"));
     //choosing murderer button
-    chooseButton = new TextBox(width-130,height-80,180,117,loadImage("chooseMurdererIcon.png"));
+    chooseButton = new TextBox(width-130,height-80,139,90,loadImage("chooseMurdererIcon.png"));
     
   }
   
@@ -114,6 +114,9 @@ class Screen {
           arrows[i].update();
         }
       }
+      
+       if(currentScreen == 15 && wifePortrait.mouseHover() && mousePressed)currentScreen = 16;
+       else if(currentScreen == 15 && (brotherPortrait.mouseHover()||maidPortrait.mouseHover()||butlerPortrait.mouseHover()) && mousePressed)currentScreen = 17;
       
       //Happens in the user playable screens
       if(currentScreen > 5 && currentScreen < 15)

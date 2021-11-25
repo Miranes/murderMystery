@@ -1,6 +1,7 @@
 class Item
 {
   PImage itemImg;
+  PImage otherImg;
   String itemPath;
   float xPos;
   float yPos;
@@ -13,30 +14,39 @@ class Item
   boolean itemFound;
   boolean diary;
   boolean collected;
+  boolean hiddenItem;
+  boolean clicked = false;
   InventoryItem itemInv;
   
   
-  Item(String pItemPath ,float pXPos, float pYPos, int pItemWidth, int pItemHeight, boolean pDiary,  InventoryItem pItemInv)
+  Item(String pItemPath ,float pXPos, float pYPos, int pItemWidth, int pItemHeight, boolean pDiary, boolean pHiddenItem, InventoryItem pItemInv)
   {
     itemPath = pItemPath;
+    if(pItemPath == "items/pot.png") otherImg = loadImage("items/potBroken.png");
     itemImg = loadImage(pItemPath);
     xPos = pXPos;
     yPos = pYPos;
     itemWidth = pItemWidth;
     itemHeight = pItemHeight;
     diary = pDiary;
+    hiddenItem = pHiddenItem;
     itemInv = pItemInv;
     normalWidth = pItemWidth;
     normalHeight = pItemHeight;
     hoveredWidth = pItemWidth + 10;
     hoveredHeight = pItemHeight + 10;
-    
   }
+  
+  Item(String pItemPath ,float pXPos, float pYPos, int pItemWidth, int pItemHeight)
+  {
+   this(pItemPath,pXPos,pYPos,pItemWidth,pItemHeight,false,false,null); 
+  }
+    
   
   void update()
   {
     //checking if item is already collected and adding it to array
-    if(playerHover() && !collected)
+    if(playerHover() && !collected && !hiddenItem && itemPath != "items/pot.png")
     {
       if(diary) inventory.diariesInInventory.add(itemInv); 
       else inventory.itemsInInventory.add(itemInv);
@@ -45,7 +55,7 @@ class Item
     }
     
     //hovering over item with cursor if not collected yet
-    if(!collected)
+    if(!collected && !hiddenItem)
     {
       if(mouseHover())
       {
@@ -66,7 +76,13 @@ class Item
     }
     
     //displaying item if not collected
-    if(!collected) image(itemImg,xPos,yPos,itemWidth,itemHeight);
+    if(itemPath == "items/pot.png" && mouseHover() && mousePressed && !clicked)
+    {
+      itemImg = otherImg;
+      keyAttic.hiddenItem = false;
+      clicked = true;
+    }
+    if(!collected && !hiddenItem) image(itemImg,xPos,yPos,itemWidth,itemHeight);
     
   }
   
