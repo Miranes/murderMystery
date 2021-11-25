@@ -6,6 +6,7 @@ class Screen {
   Item[] items;
   TextBox[] textboxes;
   TextBox menu;
+  TextBox chooseButton;
   Npc[] npcs = null;
   boolean locked;
 
@@ -16,9 +17,12 @@ class Screen {
     items = pItems;
     npcs = pNpcs;
     locked = pLocked;
-    screenNameBckg = loadImage("menuButton.png");
-    //float pXPos, float pYPos, int pBoxWidth, int pBoxHeight, int pTextSize, String pBoxText, PImage pBoxIm
-    menu = new TextBox(100,80,160,96,40,"MENU",loadImage("menuButton.png"));
+    screenNameBckg = loadImage("roomName.png");
+    //back to menu buttons
+    menu = new TextBox(100,80,130,75,33,"MENU",loadImage("menuButton.png"));
+    //choosing murderer button
+    chooseButton = new TextBox(width/2,height/2,300,300,loadImage("menuButton.png"));
+    
   }
   
   Screen(PImage pBackground, String pScreen, Arrow[] pArrows, Npc[] pNpcs, boolean pLocked)
@@ -47,12 +51,20 @@ class Screen {
     this(pBackground,pScreen,null,null,null,pLocked);
   }
   
+  Screen(PImage pBackground, Item[] pItems, boolean pLocked)
+  {
+    this(pBackground,null,null,pItems,null,pLocked);
+  }
+  
   void update() {
     image(backgroundImg,0,0,width,height);
-    textSize(44);
-    textAlign(CENTER,CENTER);
-    image(screenNameBckg, width/2-145,30,290,100);
-    text(screen, width/2, 75); 
+    if(currentScreen < 15)
+    {
+      textSize(44);
+      textAlign(CENTER,CENTER);
+      image(screenNameBckg, width/2-145,30,290,100);
+      text(screen, width/2, 75); 
+    }  
     
       if(currentScreen == 0)
       {
@@ -70,7 +82,8 @@ class Screen {
               if(mousePressed && !textboxes[i].clicked)
               {
                 if(i == 0) currentScreen = 2;
-                else currentScreen = 1;
+                else if(i == 1) currentScreen = 1;
+                else currentScreen = 18;
               }
            }
            else if(textboxes[i].boxWidth != 250)
@@ -94,67 +107,73 @@ class Screen {
     if(npcs != null)for(int i=0; i<npcs.length; i++)npcs[i].update();
     if(items != null) for(int i=0; i<items.length;i++)items[i].update();
     
-    if(currentScreen >= 6)
-    {
-        
-      if(!inventory.open)
-      {
-        if(inventory.buttons[0].hover())
+    if(currentScreen > 5 && currentScreen < 15)
+    { 
+        if(!inventory.open)
         {
-          if(inventory.buttons[0].boxWidth != 110)
+          if(inventory.buttons[0].hover())
           {
-            inventory.buttons[0].boxWidth = 165;
-            inventory.buttons[0].boxHeight = 135;
+            if(inventory.buttons[0].boxWidth != 110)
+            {
+              inventory.buttons[0].boxWidth = 165;
+              inventory.buttons[0].boxHeight = 135;
+            }
+          }
+          else
+          {
+            inventory.buttons[0].boxWidth = 150;
+            inventory.buttons[0].boxHeight = 115;
           }
         }
         else
         {
-          inventory.buttons[0].boxWidth = 150;
-          inventory.buttons[0].boxHeight = 115;
+          if(inventory.buttons[1].hover())
+          {
+              if(inventory.buttons[1].boxWidth != 40)
+              {
+                inventory.buttons[1].boxWidth = 40;
+                inventory.buttons[1].boxHeight = 40;
+                inventory.buttons[1].textSize = 43;
+              }
+          }
+          else
+          {
+             if(inventory.buttons[1].boxWidth != 35)
+             {
+               inventory.buttons[1].boxWidth = 35;
+               inventory.buttons[1].boxHeight = 35;
+               inventory.buttons[1].textSize = 39;
+             }
+          }
         }
-      }
-      else
-      {
-        if(inventory.buttons[1].hover())
+        inventory.update();
+        if(chooseButton.hover() && mousePressed && !chooseButton.clicked)
         {
-            if(inventory.buttons[1].boxWidth != 40)
-            {
-              inventory.buttons[1].boxWidth = 40;
-              inventory.buttons[1].boxHeight = 40;
-              inventory.buttons[1].textSize = 43;
-            }
+          currentScreen = 15;
+          chooseButton.clicked = true;
         }
-        else
-        {
-           if(inventory.buttons[1].boxWidth != 35)
-           {
-             inventory.buttons[1].boxWidth = 35;
-             inventory.buttons[1].boxHeight = 35;
-             inventory.buttons[1].textSize = 39;
-           }
-        }
-      }
-      inventory.update();
+        chooseButton.update();
     }
+    
     if(currentScreen > 0)
     {
       if(menu.hover())
       {
-        if(menu.boxWidth != 110)
+        if(menu.boxWidth != 150)
         {
-          menu.boxWidth = 176;
-          menu.boxHeight = 112;
-          menu.textSize = 48;
+          menu.boxWidth = 150;
+          menu.boxHeight = 95;
+          menu.textSize = 38;
         }
         if(mousePressed &&!menu.clicked) currentScreen = 0;
       }
       else
       {
-       if(menu.boxWidth != 100)
+       if(menu.boxWidth != 130)
        {
-         menu.boxWidth = 160;
-         menu.boxHeight = 96;
-         menu.textSize = 40;
+         menu.boxWidth = 130;
+         menu.boxHeight = 75;
+         menu.textSize = 33;
        }
       }
       menu.update();

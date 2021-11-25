@@ -52,7 +52,7 @@ class TextBox
       textAlign(CENTER,CENTER);
       textSize(textSize);
       fill(255);
-      text(boxText,xPos,yPos-textSize/10);
+      text(boxText,xPos+5,yPos-textSize/10);
     }
    
   }

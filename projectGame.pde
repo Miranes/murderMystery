@@ -15,6 +15,10 @@ Screen atticHallScreen;
 Screen atticScreen;
 Screen hallScreen;
 Screen livingRoomScreen;
+Screen chooseMurdererScreen;
+Screen wonScreen;
+Screen lostScreen;
+Screen howToPlay;
 
 //declaring items 
 Item[] items;
@@ -28,6 +32,10 @@ Item screwDriver;
 Item keyAttic;
 Item keyBasement;
 Item letter;
+Item wifePortrait;
+Item brotherPortrait;
+Item maidPortrait;
+Item butlerPortrait;
 
 //declaring NPCs
 Npc wife;
@@ -94,6 +102,10 @@ void setup() {
   PImage KeyAttic = loadImage("items/keyAttic.png") ;
   PImage KeyBasement = loadImage("items/keyBasement.png");
   PImage Letter = loadImage("items/letter.png");
+  PImage WifePortrait = loadImage("items/wifePortrait.png");
+  PImage BrotherPortrait = loadImage("items/brotherPortrait.png");
+  PImage MaidPortrait = loadImage("items/maidPortrait.png");
+  PImage ButlerPortrait = loadImage("items/butlerPortrait.png");
   
   //initializing the items
   butlerEntree = new Item(emptyEntree,width-130,height/2+180,50,50,true,new InventoryItem(ButlerEntree,inventory.posX+30,60 + inventory.posY,true,"butlerEntree"));
@@ -106,12 +118,18 @@ void setup() {
   keyAttic = new Item(KeyAttic,500, height/2+310,50,50,false,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
   keyBasement = new Item(KeyBasement,width/2+500, height/2+150,50,50,false,new InventoryItem(KeyBasement,240 + inventory.posX,150 + inventory.posY,false,"keyBasement"));
   letter = new Item(Letter,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  wifePortrait = new Item(WifePortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  brotherPortrait = new Item(BrotherPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  maidPortrait = new Item(MaidPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  butlerPortrait = new Item(ButlerPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  
   
   items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
   
   //initializing all 11 screens
   startScreen = new Screen(loadImage("backgrounds/mainMenu.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,375,120,75,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,375,120,75,"CREDITS",loadImage("button.png")),new TextBox(width/2,height/2,375,120,75,"HOW TO PLAY",loadImage("button.png"))},false);
-  creditScreen = new Screen(loadImage("backgrounds/credits.png"), "Credits", new TextBox[]{new TextBox(100,500,100,60,25,"MENU",loadImage("menuButton.png"))},false);
+  creditScreen = new Screen(loadImage("backgrounds/credits.png"), "Credits",false);
+  howToPlay = new Screen(loadImage("backgrounds/howToPlay.png"), "User Interface",false);
   explanationScreen1 = new Screen(loadImage("backgrounds/explanation1.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset-30,height/2,50,50,3)},false);
   explanationScreen2 = new Screen(loadImage("backgrounds/explanation2.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset-30,height/2,50,50,4)},false);
   explanationScreen3 = new Screen(loadImage("backgrounds/npcLeaving.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset-30,height/2,50,50,5)},false);
@@ -125,8 +143,13 @@ void setup() {
   atticScreen = new Screen(loadImage("backgrounds/attic.png"), "Attic", new Arrow[]{new Arrow(width-330,height-400,150,220,11)},new Item[]{butlerEntree,screwDriver},true);
   hallScreen = new Screen(loadImage("backgrounds/leftHall.png"), "Hall", new Arrow[]{new Arrow(width-buttonXOffset, 150,25,750, 7), new Arrow(buttonXOffset, 150,25,750,14)}, new Item[]{keyAttic},false);
   livingRoomScreen = new Screen(loadImage("backgrounds/livingRoom.png"), "Living Room", new Arrow[]{new Arrow(width-buttonXOffset,150,25,750,13)},new Item[]{brotherEntree},new Npc[]{brother},false);
+  chooseMurdererScreen = new Screen(loadImage("backgrounds/choosingMurderer.png"),new Item[]{wifePortrait,brotherPortrait,maidPortrait,butlerPortrait},false);
+  wonScreen = new Screen(loadImage("backgrounds/wonScreen.png"), "You Won",false);
+  lostScreen = new Screen(loadImage("backgrounds/lostScreen.png"), "You Lost",false);
 
-  screens = new Screen[]{startScreen, creditScreen, explanationScreen1, explanationScreen2, explanationScreen3, respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, atticHallScreen, atticScreen, hallScreen, livingRoomScreen};
+  screens = new Screen[]{startScreen, creditScreen, explanationScreen1, explanationScreen2, explanationScreen3, 
+                        respawnScreen, entranceScreen, upstairHallScreen, kitchenScreen, basementScreen, masterBedScreen, 
+                        atticHallScreen, atticScreen, hallScreen, livingRoomScreen, chooseMurdererScreen, wonScreen, lostScreen, howToPlay};
 }
 
 void draw()
@@ -141,7 +164,7 @@ void draw()
      } 
   }
   
-   if(currentScreen >= 6) mainCharacter.update();
+   if(currentScreen > 5 && currentScreen < 15) mainCharacter.update();
 }
 
 void mouseReleased()
@@ -168,20 +191,20 @@ void mouseReleased()
     //diary entrees
     for(int i=0; i<inventory.diariesInInventory.size(); i++)
     {
-     if(inventory.diariesInInventory.get(i).clicked)
-     {
-       inventory.diariesInInventory.get(i).clicked = false;
-     }
+       if(inventory.diariesInInventory.get(i).clicked)
+       {
+         inventory.diariesInInventory.get(i).clicked = false;
+       }
     }
     
     //buttons to close diary entrees
     for(int i=0; i<inventory.diariesInInventory.size(); i++)
     {
-     if(inventory.diariesInInventory.get(i).closeButton.clicked)
-     {
-       inventory.diariesInInventory.get(i).closeButton.clicked = false;
-     }
-      
+       if(inventory.diariesInInventory.get(i).closeButton.clicked)
+       {
+         inventory.diariesInInventory.get(i).closeButton.clicked = false;
+       }
     }
+    if(screens[currentScreen].chooseButton.clicked) screens[currentScreen].chooseButton.clicked = false;
   }
 }

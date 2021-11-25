@@ -26,11 +26,23 @@ class Arrow
  {
    if(currentScreen < 6)
    {
-     if(hoverMouse())fill(255);
-     else fill(0);
-     rect(xPos,yPos,arrowWidth,arrowHeight);
-     fill(255);
-     image(arrow,xPos,yPos,50,50);
+     if(hoverMouse())
+     {
+       if(arrowWidth != 60)
+       {
+        arrowWidth = 60;
+        arrowHeight = 60;
+       }
+     }
+     else
+     {
+        if(arrowWidth != 50)
+        {
+          arrowWidth = 50;
+          arrowHeight = 50;
+        }
+     }  
+     image(arrow,xPos,yPos,arrowWidth,arrowHeight);
    }
    
     if(hoverPlayer() && currentScreen >= 6)
