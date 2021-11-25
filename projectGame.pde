@@ -110,12 +110,12 @@ void setup() {
   items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
   
   //initializing all 11 screens
-  startScreen = new Screen(loadImage("backgrounds/mainMenu.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,250,80,50,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,250,80,50,"CREDITS",loadImage("button.png"))},false);
+  startScreen = new Screen(loadImage("backgrounds/mainMenu.png"), "Main Menu", new TextBox[]{new TextBox(width/2,height*0.33334,375,120,75,"START",loadImage("button.png")),new TextBox(width/2,height*0.66667,375,120,75,"CREDITS",loadImage("button.png")),new TextBox(width/2,height/2,375,120,75,"HOW TO PLAY",loadImage("button.png"))},false);
   creditScreen = new Screen(loadImage("backgrounds/credits.png"), "Credits", new TextBox[]{new TextBox(100,500,100,60,25,"MENU",loadImage("menuButton.png"))},false);
-  explanationScreen1 = new Screen(loadImage("backgrounds/explanation1.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,3)},false);
-  explanationScreen2 = new Screen(loadImage("backgrounds/explanation2.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,4)},false);
-  explanationScreen3 = new Screen(loadImage("backgrounds/npcLeaving.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,5)},false);
-  respawnScreen = new Screen(loadImage("backgrounds/respawnScreen.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset,height/2,50,50,6)},false);
+  explanationScreen1 = new Screen(loadImage("backgrounds/explanation1.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset-30,height/2,50,50,3)},false);
+  explanationScreen2 = new Screen(loadImage("backgrounds/explanation2.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset-30,height/2,50,50,4)},false);
+  explanationScreen3 = new Screen(loadImage("backgrounds/npcLeaving.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset-30,height/2,50,50,5)},false);
+  respawnScreen = new Screen(loadImage("backgrounds/respawnScreen.png"), "Cutscene", new Arrow[]{new Arrow(width-buttonXOffset-30,height/2,50,50,6)},false);
   entranceScreen = new Screen(loadImage("backgrounds/entrance.png"), "Entrance", new Arrow[]{new Arrow(width-325, height/2,200,350, 8), new Arrow(width/2-100, 350,200,50,7)},new Npc[]{butler},false);
   upstairHallScreen = new Screen(loadImage("backgrounds/upstairsHall.png"), "Upstairs Hall", new Arrow[]{new Arrow(width/2-200, height-190,400,25, 6), new Arrow(width-50,150,25,750,11), new Arrow(buttonXOffset,150,25,750,13), new Arrow(width/2, 250,50,50,10)},false);
   kitchenScreen = new Screen(loadImage("backgrounds/kitchen.png"), "Kitchen", new Arrow[]{new Arrow(150,height/2,200,350, 6), new Arrow(width-50,150,25,750,9)},new Item[]{keyBasement},new Npc[]{maid},false);
