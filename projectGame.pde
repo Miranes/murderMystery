@@ -79,7 +79,7 @@ void setup() {
   
   //initializing npcs
   wife = new Npc(width/2-38,height/2+60,300,300,"wife",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/wifeIdle.png"),6,1));
-  brother = new Npc(width/2+100,height/2+30,330,330,"brother",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/brotherIdle.png"),5,1));
+  brother = new Npc(width-500,height/2+30,330,330,"brother",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/brotherIdle.png"),5,1));
   butler = new Npc(width/2-98,height/2+30,330,330,"butler",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/butlerIdle.png"),4,1));
   maid = new Npc(width/2-56,height/2+60,300,300,"maid",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/maidIdle.png"),4,1));
   cat = new Npc(320,height/2-280,250,250,"cat",new TextBox(dialogueBoxX,dialogueBoxY,1400,220,40,"Hey, you! Thieve!",dialogueBoxImg),new Animation(loadImage("npcs/catIdle.png"),6,1));
