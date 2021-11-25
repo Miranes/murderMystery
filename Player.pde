@@ -41,7 +41,7 @@ class Player
   
   void update() { 
 
-    if (mousePressed && !isMoving && !inventory.overButton() && !inventory.overInventoryBox()) //&& mouseY <= 760 && mouseY >= 285) 
+    if (mousePressed && !isMoving && !inventory.overButton() && !inventory.overInventoryBox())
     {
       translateX = mouseX - playerWidth/2 + 175;
       translateY = mouseY - playerHeight/2;
