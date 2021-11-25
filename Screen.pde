@@ -21,7 +21,7 @@ class Screen {
     //back to menu buttons
     menu = new TextBox(100,80,130,75,33,"MENU",loadImage("menuButton.png"));
     //choosing murderer button
-    chooseButton = new TextBox(width,height,300,300,loadImage("menuButton.png"));
+    chooseButton = new TextBox(width-130,height-80,180,117,loadImage("chooseMurdererIcon.png"));
     
   }
   

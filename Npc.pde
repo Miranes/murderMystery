@@ -51,8 +51,8 @@ class Npc
   
   boolean hover()
   {
-    if(mouseX >= posX &&
-       mouseX <= posX+npcWidth &&
+    if(mouseX >= posX-200 &&
+       mouseX <= posX+npcWidth-400 &&
        mouseY >= posY &&
        mouseY <= posY+npcHeight) return true;
     return false; 

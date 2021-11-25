@@ -70,7 +70,7 @@ void setup() {
   cursorImg = loadImage("crosshair.png");
   cursor(cursorImg);
 
-  currentScreen = 0;
+  currentScreen = 15;
   mainCharacter = new Player();
   
   float dialogueBoxX = width/2;
@@ -118,10 +118,10 @@ void setup() {
   keyAttic = new Item(KeyAttic,500, height/2+310,50,50,false,new InventoryItem(KeyAttic,170 + inventory.posX,150 + inventory.posY,false,"keyAttic"));
   keyBasement = new Item(KeyBasement,width/2+500, height/2+150,50,50,false,new InventoryItem(KeyBasement,240 + inventory.posX,150 + inventory.posY,false,"keyBasement"));
   letter = new Item(Letter,width-100, height/2-170,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  wifePortrait = new Item(WifePortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  brotherPortrait = new Item(BrotherPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  maidPortrait = new Item(MaidPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
-  butlerPortrait = new Item(ButlerPortrait,width-190, height-220,50,50,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  wifePortrait = new Item(WifePortrait,550, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  brotherPortrait = new Item(BrotherPortrait,width -860, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  maidPortrait = new Item(MaidPortrait,80, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
+  butlerPortrait = new Item(ButlerPortrait,width-380, 260,361,625,false,new InventoryItem(Letter,310+ inventory.posX,150 + inventory.posY,false,"letter"));
   
   
   items = new Item[]{butlerEntree, maidEntree, brotherEntree, wifeEntree, driedFlower, morphine, screwDriver, keyAttic, keyBasement, letter};
