@@ -4,8 +4,8 @@ class Inventory
   PImage inventoryOpen;
   int inventoryWidth = 375;
   int inventoryHeight = 255;
-  float posX = 1500;
-  float posY = 20;
+  float posX = 1530;
+  float posY = 30;
   ArrayList<InventoryItem> itemsInInventory;
   ArrayList<InventoryItem> diariesInInventory;
   TextBox[] buttons;
@@ -19,7 +19,7 @@ class Inventory
     diariesInInventory = new ArrayList();
     inventoryBag = loadImage("inventoryButton.png");
     inventoryOpen = loadImage("inventoryOpen.png");
-    buttons = new TextBox[]{new TextBox(width-100,50,100,84,inventoryBag),new TextBox(posX+inventoryWidth-30,posY + 30, 35,35,39,"X")};
+    buttons = new TextBox[]{new TextBox(width-100,80,100,84,inventoryBag),new TextBox(posX+inventoryWidth-30,posY + 30, 35,35,39,"X")};
   }
   
   void update()
